@@ -28,8 +28,9 @@ class BlogPost(models.Model):
                                related_name="blogposts")
     title = models.CharField(max_length=255) 
     slug = models.CharField(max_length=255, unique=True, editable=False)
-    description = models.CharField(_('description'), max_length=300)
-    content = models.TextField()
+    description = models.CharField(_('description'), max_length=300,
+                                   blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
     date_published = models.DateTimeField(_('date published'),
                                           default=now)

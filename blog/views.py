@@ -4,9 +4,39 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-
+from rest_framework import generics
 
 from blog.models import BlogPost, BlogCategory
+from blog.serializers import BlogPostSerializer, BlogCategorySerializer
+
+class BlogPostList(generics.ListCreateAPIView):
+    """
+    List all the blog post, and create new post
+    """
+    model = BlogPost
+    serializer_class = BlogPostSerializer
+
+class BlogPostDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve, update and delete a blog post 
+    """
+    model = BlogPost
+    serializer_class = BlogPostSerializer
+
+class BlogCategoryList(generics.ListCreateAPIView):
+    """
+    List all the blog categoires
+    """
+    model = BlogCategory
+    serializer_class = BlogCategorySerializer
+
+
+class BlogCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve, update and delete a category
+    """
+    model = BlogCategory
+    serializer_class = BlogCategorySerializer
 
 def archive_months(request, year):
     """
