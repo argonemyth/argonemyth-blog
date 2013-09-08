@@ -1,0 +1,17 @@
+{% load comments %}
+
+{# <h3>LEAVE A COMMENT</h3> #}
+{% get_comment_form for blog_post as comment_form %}
+<form action="{% comment_form_target %}" method="post"> 
+    {% csrf_token %}
+    {% for field in comment_form  %}
+        {% if not field.is_hidden %}
+        <div class="row">
+            <div class="large-4 columns">{{ field.label_tag }}</div>
+            <div class="large-8 columns">{{ field }}</div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ blog_post.get_absolute_url }}" /> 
+    <button class="button small radius right" type="submit">Submit</button>
+</form>

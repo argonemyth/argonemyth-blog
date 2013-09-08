@@ -1,0 +1,19 @@
+<script type="text/javascript" charset="utf-8">
+	$( function() {
+		$("a.link_anchor").click( function(e) {
+			// block the normal href link
+			e.preventDefault();
+			//$(this).addClass('ajaxized');
+			// get the normal href link
+			var link = $(this).attr('href');
+				$('#blog-post').load(
+					link
+				)  
+			});
+	})
+</script>
+<ol class="side-nav">
+	{% for month in archives_month %}
+	<li><a class="link_anchor" href="/blog/archive/{{year}}/{{ month.0 }}/">{{ month.1 }} ( {{ month.2 }} )</a></li>
+	{% endfor %}
+</ol>

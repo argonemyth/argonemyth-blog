@@ -1,0 +1,36 @@
+<!DOCTYPE HTML5>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="This is the person site of Fei Tan. " />
+	<meta name="keywords" content="web development, developer, freelance, freelancer, coder, django, html5, css3, python, c/c++, mauritius, portfolio" />
+	<meta name="author" content="Fei Tan" />
+    {# Google fonts #}
+    <link href='http://fonts.googleapis.com/css?family=Rambla:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" type="text/css" media="screen, projection" charset="utf-8">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/argonemyth.css" type="text/css" media="screen, projection" charset="utf-8">
+
+	<script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/jquery.scrollTo.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/jquery.tools.min.js" type="text/javascript"></script>
+    {% comment %}
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" type="text/javascript"></script>
+    {% endcomment %}
+	<script src="{{ STATIC_URL }}js/angular.min.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/blog/app.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/blog/services.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/blog/controllers.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/blog/directives.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/blog/filters.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/argonemyth.js" type="text/javascript"></script>
+	<!--[if lt IE 8]>
+		<link href="{{ STATIC_URL }}argonemyth.com/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	{% block extrastyle %}{% endblock %}
+	<title>argonemyth.me</title>
+</head>
+<body id="{% block bodyid %}{% endblock %}" data-spy="scroll" style="zoom: 1;" ng-controller="AppController" ng-init="initialize('{{ user.is_authenticated }}')">
+	{% block content %} 
+	{% endblock %} 
+</body>
+</html>

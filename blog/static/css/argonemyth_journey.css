@@ -1,0 +1,1263 @@
+@font-face {
+  font-family: "Linden Hill";
+  src: url(/static/fonts/LindenHill-Italic.otf) format('opentype');
+}
+
+@font-face {
+  font-family: "League Gothic";
+  src: url(/static/fonts/LeagueGothic.otf) format('opentype');
+}
+
+@font-face {
+  font-family: "ChunkFive";
+  src: url(/static/fonts/Chunk.otf) format('opentype');
+}
+
+@font-face {
+  font-family: "Silver Doller";
+  src: url(/static/fonts/silver_dollar.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Spatha Sans";
+  src: url(/static/fonts/spathasans.ttf) format('truetype');
+}
+
+/*
+@mixin trans_bg {
+	background-color: #000;
+	background-color: hsla(0,0%,0%,.4);
+	@include linear-gradient(color-stops(hsla(0,0%,0%,.6), hsla(0,0%,0%,0)));
+}
+*/
+/* line 81, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h1 {
+  font-family: "Spatha Sans", "League Gothic", Arial, Helvetica, sans-serif;
+  font-size: 10em;
+  color: #222222;
+}
+
+/* line 82, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h2 {
+  font-family: "Francois One", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  color: #222222;
+}
+
+/* line 83, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h3 {
+  font-family: "Francois One", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  color: white;
+}
+
+/* line 84, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h4 {
+  width: 100%;
+  font-family: "Francois One", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
+  color: white;
+  margin: 0;
+  padding-left: none;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* line 94, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h5 {
+  font-family: "Francois One", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 1.8em;
+  color: white;
+  padding: 5px;
+}
+
+/* line 95, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+h6 {
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  font-size: 1.2em;
+  color: #cacf43;
+}
+
+/*
+h3 { font-family: $header-font-family; font-size: 1.2em; color: $header-color; margin-top: 2px;}
+h6 { font-family: $header-font-family; font-size: 1em; font-style: italic; color: $title-color; margin-top: 2px; margin-bottom: 2px;}
+
+.float_box { 
+	background-image: url("/static/images/tech1.png"), url("/static/images/fishnet.png"); 
+	background-position: top right;
+	background-repeat: no-repeat, repeat;
+	padding: 5px;
+	@include border-radius(10px);
+	@include box-shadow($box-glow, 2px, 2px, 10px);
+}
+*/
+/* line 111, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+header, footer, aside, nav, article {
+  display: block;
+}
+
+/* line 115, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.net-box {
+  padding: 5px;
+  background: url("/static/images/fishnet.png") 0 0 repeat;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: #99173c, 2px, 2px, 10px;
+  -moz-box-shadow: #99173c, 2px, 2px, 10px;
+  box-shadow: #99173c, 2px, 2px, 10px;
+}
+
+/* line 126, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.title-box-float {
+  background-color: #99173c;
+  width: 1.5em;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 60px;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: inline;
+  float: left;
+}
+
+/* line 140, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.title-box {
+  background-color: #99173c;
+  width: 1.5em;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: top !important;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* line 153, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.rule-top, .table-wrapper {
+  border-top: 1px solid #000000;
+  -webkit-box-shadow: 0 -1px 0px #151412;
+  -moz-box-shadow: 0 -1px 0px #151412;
+  box-shadow: 0 -1px 0px #151412;
+}
+
+/* line 158, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.add-padding {
+  padding: 1em;
+}
+
+/* line 162, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.left-padding {
+  padding-left: 60px;
+}
+
+/* line 166, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.highlight {
+  font-weight: bold;
+  color: #cacf43;
+}
+
+/* line 169, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+a.journey {
+  color: #d05900;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.journey:visited {
+  color: #d05900;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.journey:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.journey:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.journey:active {
+  color: #99173c;
+}
+
+/* line 170, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+a.home {
+  color: #e30347;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.home:visited {
+  color: #e30347;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.home:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.home:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.home:active {
+  color: #99173c;
+}
+
+/* line 175, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+nav ul {
+  padding: 0 1em !important;
+}
+/* line 176, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+nav li {
+  padding: 0 1em;
+  display: inline-block;
+  width: auto;
+  border-right: 1px dotted #444444;
+}
+/* line 182, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+nav .last {
+  border: none !important;
+}
+/* line 183, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+nav a {
+  font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: #efffcd;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+nav a:visited {
+  color: #efffcd;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+nav a:focus {
+  color: #efffcd;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+nav a:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+nav a:active {
+  color: #efffcd;
+}
+
+/*
+img {
+	@include single-box-shadow(#777, 3px, 3px, 7px);
+}
+*/
+/* line 200, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+form th, form td, form li {
+  padding: 3px 0;
+  border-bottom: 1px dotted #2f2e19;
+}
+/* line 206, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+form th {
+  text-align: right;
+}
+/* line 207, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+form .helptext {
+  width: 20em;
+}
+/* line 208, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+form label {
+  display: inline-block;
+  padding: 0 3px;
+  text-align: right;
+  width: 50px;
+}
+/* line 217, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+form .errorlist li {
+  background-color: #222222;
+  font-weight: bold;
+  padding: 0px;
+  padding-left: 10px;
+  border-bottom: none;
+}
+
+/* line 226, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.center-button {
+  text-align: center;
+  width: 100%;
+}
+/* line 229, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.center-button button {
+  font-size: 0.9em;
+}
+
+/* line 232, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+textarea, input, select {
+  width: 212px;
+  color: #efffcd;
+  border: 1px solid #444444;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.4);
+  vertical-align: middle;
+  padding: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  /* @include single-box-shadow(#000000, 0, 0, 4px, 0, inset); */
+}
+
+/* line 246, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+select {
+  padding: 2px;
+}
+
+/* line 250, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+select[multiple="multiple"] {
+  height: 159px;
+}
+
+/* line 251, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+option, select[multiple="multiple"] option {
+  border-bottom: 1px dotted #2F2E19;
+}
+
+/* line 255, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+button {
+  color: #efffcd;
+  cursor: pointer;
+  color: #efffcd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+button:visited {
+  color: #efffcd;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+button:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+button:hover {
+  color: #99173c;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+button:active {
+  color: #99173c;
+}
+
+/* line 263, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body {
+  color: #efffcd;
+  background-color: #222222;
+  line-height: 1.5;
+  font-family: "Rambla", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #efffcd;
+  font-size: 75%;
+}
+/* line 269, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body #bg-image {
+  background-image: url("/static/images/bg_image.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 40px;
+}
+
+/* line 280, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#sticky-footer #root {
+  position: relative;
+  padding: 0 0 160px;
+}
+/* line 281, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#sticky-footer #footer {
+  height: 160px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background-image: url("/static/images/footer_image.png"), url("/static/images/footer_bg_gradient.png");
+  background-position: bottom right;
+  background-repeat: no-repeat, repeat;
+  z-index: 50;
+}
+
+/* line 387, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.one-col {
+  width: 950px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 389, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.one-col .header, .one-col .footer, .one-col .main {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 950px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .one-col .header, * html .one-col .footer, * html .one-col .main {
+  overflow-x: hidden;
+}
+
+/* line 394, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.two-col {
+  width: 950px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 396, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.two-col .header, .two-col .footer {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 950px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .two-col .header, * html .two-col .footer {
+  overflow-x: hidden;
+}
+/* line 399, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.two-col .main {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 710px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .two-col .main {
+  overflow-x: hidden;
+}
+/* line 402, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.two-col .sidebar {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .two-col .sidebar {
+  overflow-x: hidden;
+}
+
+/* line 407, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.three-col {
+  width: 950px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 409, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.three-col .left, .three-col .middle {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 310px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .three-col .left, * html .three-col .middle {
+  overflow-x: hidden;
+}
+/* line 412, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.three-col .right {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 310px;
+}
+/* line 147, ../../../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .three-col .right {
+  overflow-x: hidden;
+}
+
+/* line 417, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.widget {
+  background-color: rgba(34, 34, 34, 0.9);
+  margin-top: 40px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* line 423, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey {
+  position: relative;
+  min-height: 740px;
+}
+/* line 303, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header {
+  width: 100%;
+  margin: 0;
+}
+/* line 306, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header .top-bar {
+  background-color: #222222;
+  height: 30px;
+  overflow: hidden;
+  width: 100%;
+}
+/* line 313, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header .arrow-down {
+  border-top: 10px solid #222222;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  margin: 0 auto;
+  width: 0;
+}
+/* line 318, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header #top-header #logo {
+  display: inline-block;
+}
+/* line 319, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header #top-header #logo h1 {
+  padding: 30px 10px 0 5px;
+  display: inline-block;
+}
+/* line 328, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header .header-text {
+  display: inline-block;
+  width: 250px;
+}
+/* line 329, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header a.login-button {
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  padding: 2px 10px;
+  margin-left: -30px;
+  text-decoration: none;
+  background: url("/static/images/semi-bg.png") repeat scroll left top transparent;
+  -webkit-box-shadow: inset 0 0 4px 0 black;
+  -moz-box-shadow: inset 0 0 4px 0 black;
+  box-shadow: inset 0 0 4px 0 black;
+  border: #444444 1px solid;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 341, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #header h2 {
+  width: 80%;
+  margin: 1em auto;
+}
+/* line 344, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #footer {
+  width: 100%;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: #292929;
+}
+/* line 348, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #footer ul {
+  padding: 2em;
+}
+/* line 429, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #legal {
+  border-top: 1px dashed #444;
+  text-align: center;
+}
+/* line 434, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey h3 a, body#journey h4 a, body#journey ul.nav a {
+  text-decoration: none;
+  font-family: "Francois One", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: white;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey h3 a:visited, body#journey h4 a:visited, body#journey ul.nav a:visited {
+  color: white;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey h3 a:focus, body#journey h4 a:focus, body#journey ul.nav a:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey h3 a:hover, body#journey h4 a:hover, body#journey ul.nav a:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey h3 a:active, body#journey h4 a:active, body#journey ul.nav a:active {
+  color: #99173c;
+}
+/* line 440, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #topnav {
+  height: 45px;
+  line-height: 45px;
+  margin: 35 auto 0;
+  background-color: rgba(34, 34, 34, 0.9);
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+/* line 448, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #topnav ul.nav li {
+  display: inline-block;
+  padding: 0 1em;
+}
+/* line 449, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #topnav ul.nav li.current {
+  background-color: #e30347;
+}
+/* line 451, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #topnav ul.nav li.current a {
+  color: white;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #topnav ul.nav li.current a:visited {
+  color: white;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #topnav ul.nav li.current a:focus {
+  color: white;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #topnav ul.nav li.current a:hover {
+  color: white;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #topnav ul.nav li.current a:active {
+  color: white;
+}
+/* line 457, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-history {
+  width: 15%;
+  min-width: 11em;
+}
+/* line 458, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-nav {
+  margin-left: 100px;
+  width: 220px;
+}
+/* line 464, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-nav ol, body#journey #post-nav ul {
+  padding: 0 0 0 2em;
+}
+/* line 465, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-nav a.link-button {
+  margin: 0;
+  font-size: 14px;
+}
+/* line 466, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-nav .toggle-year {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 0 0 2em;
+}
+/* line 472, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post-nav .toggle-year + div ol {
+  padding: 0 0 0 4em;
+}
+/* line 475, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #gallery, body#journey #map {
+  padding: 10px;
+}
+/* line 478, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #posts {
+  padding: 10px;
+}
+/* line 481, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #posts article {
+  margin: 2em 0;
+  color: #989979;
+  font-size: 1.1em;
+}
+/* line 487, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post {
+  padding: 10px;
+}
+/* line 490, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post .main {
+  font-size: 1.1em;
+  color: #989979;
+}
+/* line 493, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post .main ul li {
+  list-style-type: disc;
+}
+/* line 494, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post .main ol li {
+  list-style-type: decimal;
+  list-style-position: inside;
+  margin: 5px 0;
+}
+/* line 495, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post .main ol, body#journey #post .main ul {
+  padding: 0.5em 0 0.5em 2em;
+}
+/* line 496, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #post .main p {
+  padding: 0.6em 0;
+}
+/* line 499, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey a.nav {
+  text-decoration: none;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #75715e;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey a.nav:visited {
+  color: #efffcd;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey a.nav:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey a.nav:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey a.nav:active {
+  color: #99173c;
+}
+/* line 506, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .sidebar header h3 {
+  padding-left: 5px;
+  height: 35px;
+  line-height: 35px;
+  vertical-align: middle;
+  background-color: #e30347;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+/* line 515, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #country {
+  margin-bottom: 18px;
+}
+/* line 519, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .icon {
+  display: inline-block;
+  height: 28px;
+  padding-left: 29px;
+  padding-top: 6px;
+  margin-top: 4px;
+}
+/* line 526, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .rss {
+  background: url("/static/images/feed-icon-28x28.png") no-repeat left top;
+}
+/* line 527, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #toggle_comments, body#journey #toggle_comment_form {
+  cursor: pointer;
+}
+/* line 529, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comments-section h3 {
+  padding-top: 10px;
+  padding-left: 5px;
+  border-top: 1px dotted #444444;
+}
+/* line 534, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comments-section ol {
+  padding: 0 !important;
+}
+/* line 535, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comments-section ol li {
+  list-style-type: none !important;
+}
+/* line 537, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment {
+  border-top: 1px dashed #444444;
+  margin-top: 2px;
+}
+/* line 539, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment .comment-meta {
+  float: left;
+  margin-top: 5px;
+  width: 100px;
+  text-align: right;
+}
+/* line 544, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment .comment-meta span {
+  font-size: 84%;
+}
+/* line 548, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment h2 {
+  color: #B5581F;
+  border-top: 2px solid #B5581F;
+  margin-top: 2px;
+}
+/* line 553, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment h6 {
+  font-style: normal !important;
+  font-family: "Rambla", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #444444;
+  font-weight: bold;
+}
+/* line 559, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment a {
+  font-weight: bold;
+  color: #444444;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey .comment a:visited {
+  color: #e2e75b;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey .comment a:focus {
+  color: #99173c;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey .comment a:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey .comment a:active {
+  color: #99173c;
+}
+/* line 563, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment blockquote {
+  position: relative;
+  background-color: transparent;
+  min-height: 67px;
+  margin: 0 0 0 112px;
+  padding: 8px 15px 5px 15px;
+  word-wrap: break-word;
+  font-style: normal;
+}
+/* line 571, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey .comment blockquote p {
+  padding: 0 0 10px 0 !important;
+}
+/* line 574, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form {
+  display: none;
+  font-family: "Rambla", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin-top: 20px;
+}
+/* line 578, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form form {
+  margin: 5px;
+}
+/* line 579, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form table {
+  width: 100%;
+}
+/* line 580, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form th, body#journey #comment-form td {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  vertical-align: middle;
+}
+/* line 581, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form th {
+  width: 30%;
+}
+/* line 582, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form tr {
+  width: 69%;
+}
+/* line 583, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form label {
+  width: auto;
+  text-align: left;
+}
+/* line 588, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #comment-form textarea, body#journey #comment-form input {
+  color: #efffcd;
+  width: 100%;
+  margin-top: 5px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* line 597, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey form th, body#journey form td, body#journey form li {
+  border-bottom: none;
+}
+/* line 598, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey button {
+  font-size: inherit;
+  line-height: 1.3em;
+}
+/* line 602, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top {
+  display: none;
+  position: fixed;
+  bottom: 160px;
+  margin-left: 848px;
+  text-align: left;
+}
+/* line 609, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top a {
+  width: 108px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #e30347;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #back-top a:visited {
+  color: #efffcd;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #back-top a:focus {
+  color: #efffcd;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #back-top a:hover {
+  color: #e30347;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+body#journey #back-top a:active {
+  color: #efffcd;
+}
+/* line 616, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top em {
+  float: right;
+  letter-space: 1px;
+}
+/* line 620, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top span {
+  width: 22px;
+  height: 22px;
+  display: block;
+  float: left;
+  margin: -4px 0 0 6px;
+  background: url(/static/images/up-arrow.png) no-repeat center center transparent;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+}
+/* line 630, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top a:hover {
+  background-color: #efffcd;
+}
+/* line 631, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+body#journey #back-top a:hover span {
+  background-color: #efffcd;
+}
+
+/* line 635, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.link-button {
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  font-size: 1.5em;
+  margin: 0.5em;
+  line-height: 2em;
+  padding: 5px 8px;
+  text-decoration: none;
+  background: url("/static/images/semi-bg.png") repeat scroll left top transparent;
+  -webkit-box-shadow: inset 0 0 4px 0 black;
+  -moz-box-shadow: inset 0 0 4px 0 black;
+  box-shadow: inset 0 0 4px 0 black;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* line 647, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.flowchart {
+  width: auto;
+  max-width: 7em;
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  font-size: 1em;
+  margin: 0.5em;
+  padding: 5px 8px;
+  text-decoration: none;
+  background: url("/static/images/semi-bg.png") repeat scroll left top transparent;
+  -webkit-box-shadow: inset 0 0 4px 0 black;
+  -moz-box-shadow: inset 0 0 4px 0 black;
+  box-shadow: inset 0 0 4px 0 black;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* line 660, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.package-box {
+  position: relative;
+  width: 28em;
+  height: 20em;
+  /* max-width: 30em; */
+  font-size: 1em;
+  margin: 0.5em;
+  padding: 5px 8px;
+  text-decoration: none;
+  background: url("/static/images/semi-bg.png") repeat scroll left top transparent;
+  -webkit-box-shadow: inset 0 0 4px 0 black;
+  -moz-box-shadow: inset 0 0 4px 0 black;
+  box-shadow: inset 0 0 4px 0 black;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+/* line 672, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.package-box ul {
+  margin-left: 1em;
+  font-size: 1.1em;
+}
+/* line 673, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.package-box li {
+  list-style: disc outside none;
+}
+/* line 674, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.package-box .price {
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  color: #cacf43;
+}
+/* line 678, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.package-box .total {
+  bottom: 5px;
+  position: absolute;
+}
+
+/* line 682, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.table-wrapper, .table-wrapper-no-border, .table-wrapper-full {
+  display: table;
+}
+
+/* line 686, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.table-wrapper-full {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 688, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.cell-wrapper {
+  display: table-cell;
+  vertical-align: text-top;
+}
+
+/* line 689, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.workflow .cell-wrapper {
+  vertical-align: middle;
+}
+
+/* line 691, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.arrow {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 697, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.tooltip {
+  display: none;
+  font-weight: bold;
+  height: auto;
+  width: auto;
+  max-width: 300px;
+  padding: 5px;
+  color: #cacf43;
+  background: url("/static/images/semi-transparent80.png") repeat scroll left top transparent;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* line 715, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#error404, #error500 {
+  /* background:transparent url("/static/images/404-bg2.jpg") no-repeat scroll left top; */
+  width: 640;
+  padding: 10em 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 720, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#error404 img, #error500 img {
+  float: left;
+  margin-right: 3px;
+}
+/* line 721, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#error404 .error, #error500 .error {
+  padding-left: 100px;
+  padding-top: 10px;
+  font-size: 0.8em;
+}
+/* line 722, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#error404 p.error, #error404 .error a, #error500 p.error, #error500 .error a {
+  height: 55px;
+  font-family: ChunkFive, "Myriad Pro", "Trebuchet MS", Arial;
+  font-size: 1.5em;
+}
+
+/* line 729, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.free-project {
+  height: 135px;
+  width: auto;
+}
+/* line 732, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.free-project img {
+  height: 130px;
+  width: 180px;
+}
+/* line 735, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.free-project .free-project-desc {
+  display: inline-block;
+  margin-left: 5px;
+  padding-left: 5px;
+  height: 130px;
+  width: 40em;
+  border-left: 1px solid #000000;
+  -webkit-box-shadow: -1px 0 0px #151412;
+  -moz-box-shadow: -1px 0 0px #151412;
+  box-shadow: -1px 0 0px #151412;
+}
+
+/* line 746, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.free-desc {
+  height: 10em;
+  width: 20em;
+  padding: 0.5em;
+  border-right: 1px solid #000000;
+  -webkit-box-shadow: 1px 0 0px #151412;
+  -moz-box-shadow: 1px 0 0px #151412;
+  box-shadow: 1px 0 0px #151412;
+}
+
+/* line 755, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist li {
+  display: inline-block;
+  margin: 5px;
+  width: auto;
+}
+/* line 761, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist li img.thumbnail {
+  width: 255px;
+  height: 85px;
+  vertical-align: top;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+/* line 767, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist li div.project-info {
+  width: 360px;
+  display: inline-block;
+  margin-left: 5px;
+  padding-left: 10px;
+  height: 85px;
+  border-left: 1px solid #000000;
+  -webkit-box-shadow: -1px 0 0px #151412;
+  -moz-box-shadow: -1px 0 0px #151412;
+  box-shadow: -1px 0 0px #151412;
+}
+/* line 776, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist li div.project-info a {
+  color: #cacf43;
+}
+/* line 18, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+div.thumblist li div.project-info a:visited {
+  color: #cacf43;
+}
+/* line 21, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+div.thumblist li div.project-info a:focus {
+  color: #cacf43;
+}
+/* line 24, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+div.thumblist li div.project-info a:hover {
+  color: #cacf43;
+}
+/* line 27, ../../../../../../../../usr/share/compass/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+div.thumblist li div.project-info a:active {
+  color: #cacf43;
+}
+/* line 779, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist .fullview {
+  display: none;
+  height: auto;
+  width: 400px;
+  padding: 5px;
+  background: url("/static/images/semi-bg.png") repeat scroll left top transparent;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+/* line 788, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.thumblist .fullview img {
+  width: 400px;
+}
+
+/* line 792, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#contact, #social, #recommend {
+  margin: 1em 0;
+  display: inline-block;
+  padding-right: 2em;
+  vertical-align: text-top;
+}
+
+/* line 799, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#contact, #social {
+  border-right: 1px dotted #33332B;
+}
+
+/* line 803, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#contact, #legal {
+  padding-left: 2em;
+}
+/* line 805, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#contact ul, #legal ul {
+  padding-left: 0 !important;
+}
+/* line 806, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+#contact li, #legal li {
+  padding-left: 0 !important;
+}
+
+/* line 809, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div#free-form {
+  height: 360px;
+  width: 28em;
+}
+
+/* line 814, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div#fancybox-outer {
+  background: url("/static/images/popup_bg.png") repeat scroll left top transparent !important;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: #99173c, 2px, 2px, 10px;
+  -moz-box-shadow: #99173c, 2px, 2px, 10px;
+  box-shadow: #99173c, 2px, 2px, 10px;
+}
+/* line 818, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div#fancybox-outer div#fancybox-content {
+  border: 0 solid #000 !important;
+  padding: 5px;
+}
+
+/* line 821, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.form-feedback {
+  max-width: 400px;
+  min-width: 300px;
+  width: auto;
+}
+/* line 822, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+.form-feedback header {
+  width: 300px;
+}
+
+/* line 826, ../../../../../compass/argonemyth.com/src/argonemyth_journey.scss */
+div.text-block {
+  max-width: 415px;
+  padding-right: 30px;
+}

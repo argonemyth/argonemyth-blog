@@ -33,7 +33,7 @@ class BlogCategorySerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('id', 'slug')
 
     def get_api_url(self, obj):
-        return "#/category/%s" % obj.id
+        return "#/category/%s" % obj.slug
 
 
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,6 +48,6 @@ class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('id', 'slug')
 
     def get_api_url(self, obj):
-        return "#/post/%s" % obj.id
+        return "#/post/%s" % obj.slug
 
 

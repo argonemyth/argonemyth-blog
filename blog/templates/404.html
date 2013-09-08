@@ -1,0 +1,80 @@
+<!DOCTYPE HTML5>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+    {% load compress %}
+    {% compress css %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" type="text/css" media="screen, projection" charset="utf-8">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/argonemyth.css" type="text/css" media="screen, projection" charset="utf-8">
+    {% endcompress %}
+	<!--[if IE]>
+		<link href="{{ STATIC_URL }}css/argonemyth_ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<title>argonemyth.com :: dev | Page Not Found</title>
+</head>
+<body id="home-liquid">
+<div class="container">
+	<div id="header" class="span-24">
+		<div id="top-header">
+			<a href="http://www.argonemyth.com">
+				<img src="{{ STATIC_URL }}images/argonemyth_logo.png" alt="argonemyth::dev"/>	
+			</a>
+		</div>
+		<div class="header-text">
+			<section>
+				<article>
+					<header>
+					<h2>Hi there, this is the portfolio site of Fei Tan. I love to work with creative...Hey, wait, we are having an error here!</h2> 
+					</header>
+				</article>
+			</section>
+		</div>
+	</div>
+	<div id="main" class="span-24 net-box">
+		<section>
+			<article>
+			<div id="error404">
+				<p class="error">
+					<img src="{{ STATIC_URL }}images/caution.png" alt="caution" />
+					<span>I am sorry to tell you that the page you requested got sucked in a blackhole!</span>
+				</p>
+				<div class="error">
+					<a class="link-button" href="http://www.argonemyth.com">argonemyth::dev</a>
+					<a class="link-button" href="mailto:fei@argonemyth.com">email me</a>
+				</div>
+			</div>
+			</article>
+		</section>
+	</div>
+</div>
+<div id="footer">
+	<section id="contact">
+		<article>
+		<ul>
+			<li>Email: fei@argonemyth.com</li>
+			<li>Skype: argonemyth</li>
+			{# <li>Phone: (+261)32 7650 254 </li> #}
+		</ul>
+		</article>
+	</section>
+	<section id="social">
+		<article>
+		<ul>
+			<li>Follow me on <a class="twitter" href="https://twitter.com/#!/argonemyth" target="_blank">Twitter</a></li>
+			<li>View my profile on <a class="ld" href="http://www.linkedin.com/in/vivicrow" target="_blank">LinkedIn</a></li>
+		</ul>
+		</article>
+	</section>
+	<section id="legal">
+		<article>
+		<ul>
+			<li>Copyright &copy; 2009-{{ current_time|date:"Y" }} argonemyth dev.</li>
+		</ul>
+		</article>
+	</section>
+</div>
+{% if not debug %}
+{% include "piwik_tracking.html" %}
+{% endif %}
+</body>
+</html>

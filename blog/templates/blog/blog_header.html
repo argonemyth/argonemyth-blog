@@ -1,0 +1,29 @@
+<div id="header" class="row">
+    <a href="http://www.argonemyth.com"><img src="{{ STATIC_URL }}images/argonemyth_logo.png" alt="argonemyth::dev"/></a>
+    {% comment %}
+        <div id="top-header">
+			<h1>argonemyth { dev } </h1>
+			<a href="http://www.argonemyth.com"><h1>argonemyth::dev</h1></a>
+				<a class="login-button" href="#" target="_blank">client login</a>
+			<span id="login-button">
+			<form method="post" action="">
+				{% csrf_token %}
+				<span><label for="id_username">Client Username: </label> {{ form.username }} </span>
+				<span><label for="id_password">Password: </label> {{ form.password }} </span>
+				<input type="hidden" name="next" value="{{next}}" />
+				<button type='submit'>Login</button>
+			</form>
+			</span>
+        </div>
+        <div class="header-text">
+            <section>
+                <article>
+                    <header>
+                    <h2>Hi there, this is the workspace of Fei. I love to work with creative, unique people who are obsessed with their ideas or dreams. If it sounds like you, drop me a line.</h2> 
+                    {# I am here to build the future of the digital world with creative, unique and open-minded people around the world. Together, we can make the Internet and computer world a better place to live and play.</h2>#} 
+                    </header>
+                </article>
+            </section>
+        </div>
+    {% endcomment %}
+</div>

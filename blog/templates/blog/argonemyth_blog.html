@@ -1,0 +1,96 @@
+{% extends "blog/blog_base.html" %}
+
+{% load pygmentize social_addthis %}
+
+{% block extrameta %}
+<meta name="description" content="{{ blog_post.description }}" />
+<meta name="keywords" content="{{ blog_post.render_tags }}" />
+{% endblock %}
+
+{% block bodyid %}blog{% endblock %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" href="/static/blog/css/pygments.css" type="text/css" media="screen, projection" charset="utf-8">
+	<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4dbe9eaa018f602d"></script>
+{% endblock %}
+
+{% block content %}
+{% include "blog/blog_header.html" %}
+<div id="main" class="row">
+    <div class="large-5 small-12 columns">
+        {# blog entry section #}
+        <div class="row">
+            <div class="large-1 small-1 column" style="padding-left: 0">
+                <div class="title-box"><br />B<br />L<br />O<br />G</div>
+            </div>
+            <div class="large-11 small-10 columns" style="padding-right: 5%">
+                <div id="blog-post">
+                    <article>
+                        <header>
+                            <h3>{{ blog_post.title }}</h3>
+                            <h6>{{ blog_post.date_published|date:"M d Y" }}</h6>
+                        </header>
+                        <section>{% addthis blog_post.title %}</section>
+                        <section>{{ blog_post.content|pygmentize|safe }}</section>
+                    </article>
+                    {% include "blog/argonemyth_blog_comments.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="large-2 small-12 columns">
+        {% include "blog/argonemyth_blog_navigation.html" %}
+    </div>
+    <div class="large-6 columns hide-for-medium-down">{# Just for padding #}</div>
+    {% comment %}
+    
+    <div class="large-7 small-12 columns">
+        {# nav section #}
+        <div class="row">
+            <div class="large-3 small-12 columns">
+                {% include "blog/argonemyth_blog_navigation.html" %}
+            </div>
+            <div class="large-9 columns hide-for-small">{# Just for padding #}</div>
+        </div>
+    </div>
+    {% endcomment %}
+</div>
+{% include "blog/footer.html" %}
+{% endblock %}
+
+{% comment %}
+
+	<div id="main" class="span-24">
+        <div id="top" class="table-wrapper-full">
+            <div class="cell-wrapper title-box"><br />B<br />L<br />O<br />G</div>
+            {# blog entry #}
+            <div class="cell-wrapper left-padding">
+                <div class="table-wrapper-no-border">
+                    <div id="post" class="cell-wrapper"> 
+                        <div class="info-box">
+                            <div class="info-content">
+                            <article>
+                                <header>
+                                    <h3>{{ blog_post.title }}</h3>
+                                    <h6>{{ blog_post.date_published|date:"M d Y" }}</h6>
+                                </header>
+                                <section>{% addthis blog_post.title %}</section>
+                                <section>{{ blog_post.content|pygmentize|safe }}</section>
+                            </article>
+                            </div>
+                            {% include "blog/argonemyth_blog_comments.html" %}
+                        </div>
+                    </div>
+
+                    {# blog nav #}
+                    <div class="cell-wrapper"> 
+                        {% include "blog/argonemyth_blog_navigation.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endcomment %}

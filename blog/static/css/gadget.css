@@ -1,0 +1,101 @@
+/*
+.ui-corner-top{ 
+    background: #459E00 url(jquery-ui/images/ui-bg_highlight-hard_15_459e00_1x100.png) 
+    repeat-x scroll 50% 50%; 
+    padding: 4px; 
+    font-size: 1.2em; 
+    color: #fff; 
+    font-weight: bold; 
+    margin: 0px;
+}
+
+.ui-state-error{
+    padding:3px;
+}
+
+.ui-button-text {
+    font-weight:bold;
+    color:white;
+    font-size:10px;;
+}
+*/
+
+
+.ui-gadget { 
+    position: relative; 
+    margin: 5px auto; 
+}
+
+.ui-gadget-titlebar { 
+    position: relative; 
+    background: #0972A5 url("dark-hive/images/ui-bg_highlight-hard_20_0972a5_1x100.png") repeat-x scroll 50% 50%; 
+    border: 1px solid #26B3F7;
+    padding: 0.1em 0.5em; 
+    color: #fff; 
+}
+
+.ui-gadget-title { 
+    float: left; 
+    margin: 0.1em 16px 0.2em 0; 
+}
+
+.ui-gadget-hide { 
+    height: 18px; 
+    margin: -10px 0 0; 
+    padding: 1px; 
+    position: absolute; 
+    right: 0.3em; 
+    top: 50%; 
+    width: 19px;
+}
+
+.ui-gadget-refresh { 
+    height: 18px; 
+    margin: -10px 0 0; 
+    padding: 1px; 
+    position: absolute; 
+    right: 1.5em; 
+    top: 50%; 
+    width: 19px; 
+}
+
+.ui-gadget .ui-gadget-hide span {
+    display: block; 
+    margin: 1px;
+}
+
+.ui-gadget .ui-gadget-refresh span {
+    display: block; 
+    margin: 1px;
+}
+
+.ui-gadget .ui-gadget-hide .ui-icon { 
+    background-image: url("jquery-ui/images/ui-icons_ffffff_256x240.png") 
+}
+
+.ui-gadget .ui-gadget-refresh .ui-icon { 
+    background-image: url("jquery-ui/images/ui-icons_ffffff_256x240.png") 
+}
+
+.ui-gadget-content { 
+    padding: 3px; 
+}
+
+.ui-gadget-edit { 
+    height: 18px; 
+    margin: -10px 0 0; 
+    padding: 1px; 
+    position: absolute; 
+    right: 0.3em; 
+    top: 50%; 
+    width: 19px; 
+}
+
+.ui-gadget .ui-gadget-content .ui-icon { 
+    background-image: url("jquery-ui/images/ui-icons_ffffff_256x240.png") 
+}
+
+.ui-gadget .ui-gadget-edit span {
+    display: block; 
+    margin: 1px;
+}

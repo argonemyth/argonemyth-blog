@@ -1,0 +1,14 @@
+<div class="info-box">
+    <div class="info-content search-result">
+        <div class="row" ng-repeat="post in posts">
+            {% comment %}
+                
+            <h6>In Django View </h6>
+            {% endcomment %}
+            <section>   
+                <h4><a href="[[ post.api_url ]]">[[ post.title ]]</a></h4>
+                <p>[[ post.description ]]</p>
+            </section>
+        </div>
+    </div>
+</div>

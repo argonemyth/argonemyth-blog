@@ -1,0 +1,66 @@
+<div id="post-nav" class="info-box">
+    <div class="show-for-small" style="margin-top:2em"></div>
+	<div class="info-content">
+        {% comment %}
+        # FEED
+		<article>
+			<section>
+                <nav><a href="/blog/feed/" class="icon rss" alt="subscribe to blog feed">Subscribe Blog</a></nav> 
+                {# <nav><a href="http://feeds.feedburner.com/ArgonemythBlog" class="icon rss" alt="subscribe to blog feed">Subscribe Blog</a></nav> #}
+			</section>
+		</article>
+        {% endcomment %}
+		<article>
+			<section id="site-nav">
+                <h5><a href="/" alt="go back to the main site">Home</a></h5> 
+                <h5><a href="/journey/" alt="Journey">Journey</a></h5> 
+                {# <a href="/blog/feed/" class="icon rss" alt="subscribe to blog feed">RSS</a> #}
+                {#<a class="link-button" href="/blog/feed/" alt="subscribe to blog feed">RSS</a>#}
+			</section>
+		</article>
+		<article>
+			<header><h6>Recent Posts</h6></header>
+			<section>
+				<ul class="side-nav">
+					{% for post in recent_posts %}
+					<li><a class="nav" href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</section>
+		</article>
+		<article>
+			<header><h6>Top 10</h6></header>
+			<section>
+				<ul class="side-nav">
+					{% for post in top_posts  %}
+						<li><a class="nav"  href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</section>
+		</article>
+		<article>
+			<header><h6>Categories</h6></header>
+			<section>
+				<ul class="side-nav">
+					{% for cat in categoris  %}
+						<li><a class="link_anchor nav" href="{{ cat.get_absolute_url }}">{{ cat }}</a></li>
+					{% endfor %}
+				</ul>
+			</section>
+		</article>
+		<article>
+			<header><h6>Archives</h6></header>
+			<section>
+                <ul class="side-nav">
+                    {% for arc in archive %}
+                        <li class="toggle-year" data="toggler" id="{{ arc.0 }}">{{ arc.0 }} ( {{ arc.1 }} )</li>
+                        <li id="month-{{ arc.0 }}"></li>
+                    {% endfor %}
+                </ul>
+			</section>
+		</article>
+		<article>
+            {% include "blog/argonemyth_search.html" %}
+        </article>
+    </div>
+</div>

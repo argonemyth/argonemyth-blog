@@ -1,0 +1,16 @@
+<div class="info-box">
+	<div class="info-content search-result">
+        {% if category %}
+            <h3 class="logo">{{ category }}</h3>
+        {% else %}
+            <h3 class="logo">{{ year }} {{ month }}</h3>
+        {% endif %}
+        {% for post in blog_posts %}
+            {# <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>#}
+            <section>   
+                <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                <p>{{ post.description }}</p>
+            </section>
+        {% endfor %}
+	</div>
+</div>

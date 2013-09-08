@@ -51,6 +51,22 @@ class BlogCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BlogCategorySerializer
 
 
+def home(request, template_name="blog/blog_index.html"):
+    """
+    The index for blog
+    """
+    return render_to_response(template_name,
+                              context_instance=RequestContext(request))
+
+def angular_views(request, page):
+    """
+    Render angular partials 
+    """
+    template_name = "blog/partials/%s" % page
+    return render_to_response(template_name,
+                              context_instance=RequestContext(request))
+
+
 def archive_months(request, year):
     """
     Get the monthly status of posts for a year.

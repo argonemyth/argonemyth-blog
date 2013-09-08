@@ -1,0 +1,54 @@
+{% load comments %}
+{% load gravatar %}
+{% get_comment_count for blog_post as comment_count %}
+<div id="comments-section"> 
+    <h3>
+        Comments ( {{ comment_count }} ) &nbsp;|&nbsp; 
+        <span id="toggle_comments" data="toggler">hide comments</span> &nbsp;|&nbsp;
+        <span id="leave_comment" url="post_comment/{{ blog_post.id }}">leave a comment</span>
+    </h3>
+    <div id="comments">
+        <div id="comment-form"></div>
+        <div>
+            {% get_comment_list for blog_post as comments %}
+            <ol>
+            {% for comment in comments %}
+                <li class="comment">
+                    <div class="comment-meta row collapse">
+                        <div class="comment-author small-2 columns">
+                            {% if comment.user_url %}
+                                <h6><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a></h6>
+                            {% else %}
+                                <h6>{{ comment.user_name }}</h6>
+                            {% endif %}
+                            <img src="{% gravatar_url comment.user_email %}">
+                        </div>
+                        <div class="comment-body small-10 columns">
+                            <blockquote>
+                                <span>{{ comment.submit_date|date:"N d, Y" }}</span>
+                                <p>{{ comment.comment }}<p>
+                            </blockquote>
+                        </div>
+                </li>
+            {% endfor %}
+            </ol>
+        </div>
+
+        {% comment %}
+        <div id="comment-form">
+            {% get_comment_form for blog_post as comment_form %}
+            <form action="{% comment_form_target %}" method="post"> 
+                {% csrf_token %}
+                <table>
+                {{ comment_form }}
+                <input type="hidden" name="next" value="{{ blog_post.get_absolute_url }}" /> 
+                <tr>
+                    <td></td>
+                    <td><button class="link-button" type="submit">Submit</button></td>
+                </tr>
+                </table>
+            </form>
+        </div>
+        {% endcomment %}
+    </div>
+</div>

@@ -41,10 +41,12 @@ urlpatterns += patterns("blog.views",
     #url("^archive/(?P<year>\d{4})/(?P<month>\d{1,2})/$", "blog_post_list", name="blog_post_list_month"),
     #url("^category/(?P<category>.*)/$", "blog_post_list", name="blog_post_list_category"),
     #url("^post_comment/(?P<blog_id>\d+)/$", 'blog_post_comment', name="blog_post_comment"),
-    url(r'^categories/$', views.BlogCategoryList.as_view(), name='blogcategory-list'),
-    url('^categories/(?P<slug>[\w\-]+)/$', views.BlogCategoryDetail.as_view(), name='blogcategory-detail'),
-    url(r'^$', views.BlogPostList.as_view(), name='blogpost-list'),
-    url("^(?P<slug>[\-\d\w]*)$", views.BlogPostDetail.as_view(), name="blogpost-detail"),
+    url(r'^api/categories/$', views.BlogCategoryList.as_view(), name='blogcategory-list'),
+    url(r'^api/categories/(?P<slug>[\w\-]+)/$', views.BlogCategoryDetail.as_view(), name='blogcategory-detail'),
+    url(r'^api/posts/$', views.BlogPostList.as_view(), name='blogpost-list'),
+    url(r'^api/posts/(?P<slug>[\-\d\w]*)/$', views.BlogPostDetail.as_view(), name="blogpost-detail"),
+    url(r'^partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
+    url(r'^$', 'home', name="blog_home"),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
