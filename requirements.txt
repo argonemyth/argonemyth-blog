@@ -1,3 +1,6 @@
 Django==1.5.2
 django-taggit==0.10
 django-uuslug==1.0.0
+djangorestframework==2.3.7
+Markdown==2.3.1
+django-filter==0.7
