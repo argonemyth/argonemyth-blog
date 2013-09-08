@@ -15,6 +15,17 @@ class BlogPostList(generics.ListCreateAPIView):
     """
     model = BlogPost
     serializer_class = BlogPostSerializer
+    
+    def pre_save(self, obj):
+        obj.author = self.request.user
+    
+    def post_save(self, obj, *args, **kwargs):
+        if type(obj.tags) is list:
+            # if tags were provided in the request
+            saved_obj = self.model.objects.get(pk=obj.pk)
+            for tag in obj.tags:
+                saved_obj.tags.add(tag.strip())
+
 
 class BlogPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -22,6 +33,7 @@ class BlogPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     model = BlogPost
     serializer_class = BlogPostSerializer
+
 
 class BlogCategoryList(generics.ListCreateAPIView):
     """
@@ -37,6 +49,7 @@ class BlogCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     model = BlogCategory
     serializer_class = BlogCategorySerializer
+
 
 def archive_months(request, year):
     """
