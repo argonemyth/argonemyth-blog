@@ -1,6 +1,13 @@
 from django.contrib import admin
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 
-from blog.models import * 
+from blog.models import BlogPost, BlogCategory
+
+class BlogPostForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = BlogPost
 
 class BlogPostAdmin(admin.ModelAdmin):
     """
@@ -12,12 +19,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ("title", "content")
     date_hierarchy = "date_published"
     ordering = ("-date_published", )
-
-    """
-    class Media:
-        js = ("/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js",
-              "/static/blog/js/tinymce_setup.js",)
-    """
+    form = BlogPostForm
 
 admin.site.register(BlogPost, BlogPostAdmin)
 

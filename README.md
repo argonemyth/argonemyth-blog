@@ -25,6 +25,7 @@ Add "blog" to your project's INSTALLED_APPS seting.
 Run ./manage.py syncdb or ./manage.py migrate blog if using South.
 
 4. Add 'rest_framework' to your INSTALLED_APPS setting.
+
 5. If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
 
     urlpatterns = patterns('',
@@ -48,4 +49,9 @@ Run ./manage.py syncdb or ./manage.py migrate blog if using South.
         ]   
     }
 
+7. Django CKEditor
+Add ckeditor to your INSTALLED_APPS setting.
 
+Add CKEditor URL include to your project's urls.py file:
+
+    (r'^ckeditor/', include('ckeditor.urls')),

@@ -10,7 +10,7 @@ var appController = Blog.controller('AppController', function ($scope, $rootScop
 })
 
 // Manages a list of posts and create new ones
-Blog.controller('FeedController', function ($scope, GlobalService, PostService, posts) {
+Blog.controller('PostsController', function ($scope, GlobalService, PostService, posts) {
     $scope.posts = posts;
     $scope.globals = GlobalService;
     //options for modals
@@ -43,7 +43,7 @@ Blog.controller('FeedController', function ($scope, GlobalService, PostService, 
     };
 });
 
-// Read and Edit a single post
+// Read a single post
 Blog.controller('PostController', function ($scope, $routeParams, $location, PostService, GlobalService, post) {
     $scope.post = post;
     $scope.globals = GlobalService;
@@ -77,5 +77,19 @@ Blog.controller('PostController', function ($scope, $routeParams, $location, Pos
             $scope.post = data;
             $scope.postModalEdit = false;
         }, failureCb);
+    };
+});
+
+// Read a single post
+Blog.controller('EditController', function ($scope, $routeParams, $location, PostService, GlobalService, post) {
+    $scope.post = post;
+    $scope.globals = GlobalService;
+    var failureCb = function (status) {
+        console.log(status);
+    }
+    //options for modals
+    $scope.opts = {
+        backdropFade: true,
+        dialogFade: true
     };
 });

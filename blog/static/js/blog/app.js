@@ -2,7 +2,7 @@
 
 // Since both Angular and Django use double braces, we need to set a new rule for
 // Angular to separate between them.
-var Blog = angular.module("Blog", ["ngCookies"], function ($interpolateProvider) {
+var Blog = angular.module("Blog", ["ngCookies", "ngSanitize", "truncate"], function ($interpolateProvider) {
     $interpolateProvider.startSymbol("[[");
     $interpolateProvider.endSymbol("]]");
     }
@@ -17,8 +17,8 @@ Blog.run(function ($http, $cookies) {
 Blog.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "partials/feed.html",
-            controller: "FeedController",
+            templateUrl: "partials/posts.html",
+            controller: "PostsController",
             resolve: {
                 posts: function (PostService) {
                     return PostService.list();
@@ -26,8 +26,18 @@ Blog.config(function ($routeProvider) {
             }
         })
         .when("/post/:slug", {
-            templateUrl: "partials/view.html",
+            templateUrl: "partials/post.html",
             controller: "PostController",
+            resolve: {
+                post: function ($route, PostService) {
+                    var postSlug = $route.current.params.slug
+                    return PostService.get(postSlug);
+                }
+            }
+        })
+        .when("/post/:slug/edit/", {
+            templateUrl: "partials/post_form.html",
+            controller: "EditController",
             resolve: {
                 post: function ($route, PostService) {
                     var postSlug = $route.current.params.slug
