@@ -52,6 +52,10 @@ Run ./manage.py syncdb or ./manage.py migrate blog if using South.
 7. Django CKEditor
 Add ckeditor to your INSTALLED_APPS setting.
 
+Add a CKEDITOR_UPLOAD_PATH setting to the project's settings.py file. This setting specifies an absolute filesystem path to your CKEditor media upload directory. Make sure you have write permissions for the path, i.e.:
+
+    CKEDITOR_UPLOAD_PATH = "/home/media/media.lawrence.com/uploads"
+
 Add CKEditor URL include to your project's urls.py file:
 
     (r'^ckeditor/', include('ckeditor.urls')),

@@ -7,7 +7,6 @@ from rest_framework import viewsets, routers
 from blog.feeds import BlogPostFeed
 from blog import views
 
-
 """
 # Routers provide an easy way of automatically determining the URL conf
 router = routers.DefaultRouter()
@@ -41,12 +40,15 @@ urlpatterns += patterns("blog.views",
     #url("^archive/(?P<year>\d{4})/(?P<month>\d{1,2})/$", "blog_post_list", name="blog_post_list_month"),
     #url("^category/(?P<category>.*)/$", "blog_post_list", name="blog_post_list_category"),
     #url("^post_comment/(?P<blog_id>\d+)/$", 'blog_post_comment', name="blog_post_comment"),
+    # With Rest Framework & Anuglar JS
     url(r'^api/categories/$', views.BlogCategoryList.as_view(), name='blogcategory-list'),
     url(r'^api/categories/(?P<slug>[\w\-]+)/$', views.BlogCategoryDetail.as_view(), name='blogcategory-detail'),
     url(r'^api/posts/$', views.BlogPostList.as_view(), name='blogpost-list'),
     url(r'^api/posts/(?P<slug>[\-\d\w]*)/$', views.BlogPostDetail.as_view(), name="blogpost-detail"),
-    url(r'^partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
-    url(r'^$', 'home', name="blog_home"),
+    url(r'^app/partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
+    url(r'^app/$', 'home', name="blog_home"),
+    # Noral View
+    url(r'^$', views.BlogPostListView.as_view() , name="post_list"),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
