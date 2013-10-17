@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from rest_framework import generics
 
 from blog.models import BlogPost, BlogCategory
@@ -68,7 +68,14 @@ def angular_views(request, page):
                               context_instance=RequestContext(request))
 
 
-class BlogPostListView(ListView):
+class BlogPostContextMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(BlogPostContextMixin, self).get_context_data(**kwargs)
+        context['top_posts'] = self.model.objects.get_top_posts()
+        context['categories'] = BlogCategory.objects.all()
+        return context
+
+class BlogPostListView(BlogPostContextMixin, ListView):
     model = BlogPost
     context_object_name = "posts"
     paginated_by = 6
@@ -76,12 +83,11 @@ class BlogPostListView(ListView):
     def get_queryset(self):
         return self.model.objects.published()
 
-    def get_context_data(self, **kwargs):
-        context = super(BlogPostListView, self).get_context_data(**kwargs)
-        context['top_posts'] = self.model.objects.get_top_posts()
-        context['categories'] = BlogCategory.objects.all()
-        print context['categories']
-        return context
+
+class BlogPostDetailView(BlogPostContextMixin, DetailView):
+    model = BlogPost
+    context_object_name = "post"
+
 
 def archive_months(request, year):
     """

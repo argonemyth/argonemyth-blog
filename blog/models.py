@@ -99,7 +99,8 @@ class BlogPost(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ("blog_post_preview", (), {"slug": self.slug})
+        #return ("blog_post_preview", (), {"slug": self.slug})
+        return ("post-detail", (), {"slug": self.slug})
 
     def render_tags(self):
         """
