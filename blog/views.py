@@ -78,7 +78,6 @@ class BlogPostContextMixin(object):
             context['category'] = cat 
         else:
             context['category'] = 'home' 
-        print  context['category']
         return context
 
 
