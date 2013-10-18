@@ -48,8 +48,9 @@ urlpatterns += patterns("blog.views",
     url(r'^app/partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
     url(r'^app/$', 'home', name="blog_home"),
     # Noral View
-    url(r'^(?P<slug>[\w\-]+)/$', views.BlogPostDetailView.as_view(), name='post-detail'),
-    url(r'^$', views.BlogPostListView.as_view() , name="post-list"),
+    url(r'^(?P<category>[\w\-]+)/(?P<slug>[\w\-]+)/$', views.BlogPostDetailView.as_view(), name='post-detail'),
+    url(r'^(?P<category>[\w\-]*)$', views.BlogPostListView.as_view(), name='post-list'),
+    #url(r'^$', views.BlogPostListView.as_view() , name="post-list"),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

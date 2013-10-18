@@ -7,6 +7,7 @@ from django.contrib.comments.signals import comment_was_posted
 from django.contrib.comments.moderation import CommentModerator, moderator
 from django.template.defaultfilters import slugify, truncatewords_html
 from django.utils.timezone import now
+from django.core.urlresolvers import reverse
 
 #from datetime import datetime
 import re
@@ -98,10 +99,10 @@ class BlogPost(models.Model):
         self.view_count += 1
         self.save()
 
-    @models.permalink
     def get_absolute_url(self):
         #return ("blog_post_preview", (), {"slug": self.slug})
-        return ("post-detail", (), {"slug": self.slug})
+        #return ("post-detail", (), {"slug": self.slug})
+        return reverse('post-detail', args=[self.category.slug, self.slug])
 
     def render_tags(self):
         """
@@ -119,9 +120,12 @@ moderator.register(BlogPost, BlogPostModerator)
 class BlogCategory(models.Model):
     """
     A category for grouping blog posts into a series.
+    I will use this for the main nav menu as well.
     """
     title = models.CharField(max_length=100) 
     slug = models.CharField(max_length=100, editable=False)
+    position = models.PositiveSmallIntegerField(_('Position In the menu'),
+                                                null = True, blank=True)
     #objects = models.Manager()
     #sites = models.ManyToManyField(Site)
     #on_site = CurrentSiteManager()
@@ -129,7 +133,7 @@ class BlogCategory(models.Model):
     class Meta:
         verbose_name = _("Blog Category")
         verbose_name_plural = _("Blog Categories")
-        ordering = ('title',)
+        ordering = ('position', 'title',)
 
     def __unicode__(self):
         return self.title
@@ -138,16 +142,17 @@ class BlogCategory(models.Model):
         self.slug = uuslug(self.title, instance=self)
         super(BlogCategory, self).save(*args, **kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
-        return ("blog_post_list_category", (), {"category": self.slug})
+        return reverse('post-list', args=[self.slug])
 
+"""
 def add_comment_count(sender, comment, **kwargs):
     if comment.content_type.model == u'blogpost':
         post = BlogPost.objects.get(pk=comment.object_pk)
         post.add_comment_count()
 
 comment_was_posted.connect(add_comment_count)
+"""
 
 
 class Photo(models.Model):

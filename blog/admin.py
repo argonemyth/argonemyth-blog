@@ -35,7 +35,9 @@ class BlogCategoryAdmin(admin.ModelAdmin):
     """
     Admin class for blog categories.
     """
-    ordering = ("title", )
+    list_display = ('title', 'position')
+    list_editable = ('position',)
+    ordering = ('position', 'title')
 
 admin.site.register(BlogCategory, BlogCategoryAdmin)
 

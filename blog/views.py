@@ -73,7 +73,14 @@ class BlogPostContextMixin(object):
         context = super(BlogPostContextMixin, self).get_context_data(**kwargs)
         context['top_posts'] = self.model.objects.get_top_posts()
         context['categories'] = BlogCategory.objects.all()
+        cat = self.kwargs.get('category', None)
+        if cat:
+            context['category'] = cat 
+        else:
+            context['category'] = 'home' 
+        print  context['category']
         return context
+
 
 class BlogPostListView(BlogPostContextMixin, ListView):
     model = BlogPost
@@ -81,6 +88,11 @@ class BlogPostListView(BlogPostContextMixin, ListView):
     paginated_by = 6
 
     def get_queryset(self):
+        category = self.kwargs.get('category', None)
+        print category
+        if category:
+            return self.model.objects.published().filter(
+                    category__slug__iexact = category)
         return self.model.objects.published()
 
 
