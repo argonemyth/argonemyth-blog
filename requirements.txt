@@ -7,3 +7,5 @@ django-filter==0.7
 django-ckeditor==4.0.2
 easy-thumbnails==1.4
 six==1.4.1
+Pygments==1.6
+beautifulsoup4==4.3.2
