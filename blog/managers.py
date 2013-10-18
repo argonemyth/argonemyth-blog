@@ -73,3 +73,14 @@ class BlogPostManager(Manager):
         return super(BlogPostManager, self).published(*args, **kwargs) \
             .annotate(num_comments=Count("comments")).select_related(depth=1)
     """
+
+
+class PhotoManager(Manager):
+    def get_query_set(self):
+        """
+        Only signed-in frirends and family can access.
+        """
+        return super(PhotoManager, self).get_query_set().filter(is_published=True)
+
+    def public(self):
+        return self.get_query_set().filter(is_public=True)

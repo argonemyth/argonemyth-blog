@@ -11,8 +11,9 @@ from django.utils.timezone import now
 #from datetime import datetime
 import re
 from uuslug import uuslug
+from easy_thumbnails.fields import ThumbnailerImageField
 
-from blog.managers import BlogPostManager
+from blog.managers import BlogPostManager, PhotoManager
 from taggit.managers import TaggableManager
 
 
@@ -147,3 +148,59 @@ def add_comment_count(sender, comment, **kwargs):
         post.add_comment_count()
 
 comment_was_posted.connect(add_comment_count)
+
+
+class Photo(models.Model):
+    """
+    A photo that might attach to a blog post.
+    Which will be in slide show.
+    """
+    post = models.ForeignKey("BlogPost", related_name="photos")
+    image = ThumbnailerImageField(upload_to='photos', blank=True, null=True)
+    title = models.CharField(_('title'), max_length=100, unique=True)
+    slug = models.CharField(max_length=100, editable=False)
+    caption = models.CharField(_('caption'), max_length=300, blank=True, null=True)
+    position = models.PositiveSmallIntegerField(_('Position In Gallery'))
+    #location = models.ForeignKey(Location, related_name="photos", blank=True, null=True)
+    is_public = models.BooleanField(_('is public'), default=True)
+    is_published = models.BooleanField(_('is published'), default=True)
+    date_added = models.DateTimeField(auto_now_add=True, editable=False)
+    date_modified = models.DateTimeField(auto_now=True, editable=False)
+    tags = TaggableManager(blank=True)
+
+    admin_objects = models.Manager()
+    objects = PhotoManager()
+
+    class Meta:
+        ordering = ['post', 'position']
+        get_latest_by = 'date_added'
+        verbose_name = _("photo")
+        verbose_name_plural = _("photos")
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def save(self, *args, **kwargs):
+        self.slug = uuslug(self.title, instance=self)
+        super(Photo, self).save(*args, **kwargs)
+
+    """
+    def get_absolute_url(self):
+        return reverse('pl-photo', args=[self.title_slug])
+    """
+
+    def get_previous_in_gallery(self, gallery):
+        try:
+            return self.get_previous_by_date_added(galleries__exact=gallery, is_public=True)
+        except Photo.DoesNotExist:
+            return None
+
+    def get_next_in_gallery(self, gallery):
+        try:
+            return self.get_next_by_date_added(galleries__exact=gallery, is_public=True)
+        except Photo.DoesNotExist:
+            return None
+

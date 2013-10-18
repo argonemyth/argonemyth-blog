@@ -59,3 +59,14 @@ Add a CKEDITOR_UPLOAD_PATH setting to the project's settings.py file. This setti
 Add CKEditor URL include to your project's urls.py file:
 
     (r'^ckeditor/', include('ckeditor.urls')),
+
+8 Require easy-thumbnails
+
+https://github.com/SmileyChris/easy-thumbnails
+
+    THUMBNAIL_ALIASES = { 
+        "blog.Photo.image": {
+            'full': {'size':(930, 620), 'crop': 'scale'},
+            'thumbnail': {'size': (40, 40), 'crop': 'smart'}
+        }   
+    }
