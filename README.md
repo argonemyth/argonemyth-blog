@@ -70,3 +70,12 @@ https://github.com/SmileyChris/easy-thumbnails
             'thumbnail': {'size': (40, 40), 'crop': 'smart'}
         }   
     }
+
+
+Settings
+========
+You can change the following setup in your settings.py if you wish:
+
+* Recent Post Count - by default, it's 10
+
+    BLOGS_RECENT_POSTS_COUNT = 10 

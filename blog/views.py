@@ -71,7 +71,8 @@ def angular_views(request, page):
 class BlogPostContextMixin(object):
     def get_context_data(self, **kwargs):
         context = super(BlogPostContextMixin, self).get_context_data(**kwargs)
-        context['top_posts'] = self.model.objects.get_top_posts()
+        context['recent_posts'] = self.model.objects.get_recent()
+        #context['top_posts'] = self.model.objects.get_top_posts()
         context['categories'] = BlogCategory.objects.all()
         cat = self.kwargs.get('category', None)
         if cat:

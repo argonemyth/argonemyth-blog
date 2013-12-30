@@ -1,6 +1,7 @@
 from django.db.models import Manager, Q, Sum
 from datetime import datetime
-from django.conf import settings
+
+from blog import settings
 
 
 class BlogPostManager(Manager):
