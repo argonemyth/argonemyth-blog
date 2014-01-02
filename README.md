@@ -72,6 +72,28 @@ https://github.com/SmileyChris/easy-thumbnails
     }
 
 
+8. Addthis
+
+If you wish to customize the content of add this, you will need to create a addthis.html in your base template directory. Below is the default options:
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style" addthis:title="{{ title }}">
+        <a class="addthis_button_preferred_6"></a> {# digg #}
+        <a class="addthis_button_preferred_7"></a> {# delicious #}
+        <a class="addthis_button_preferred_8"></a> {# stumbleupon #}
+        <a class="addthis_button_preferred_2"></a> {# twitter #}
+        <a class="addthis_button_preferred_1"></a> {# facebook #}
+        <a class="addthis_button_preferred_11"></a> {# myspace #}
+        <a class="addthis_button_preferred_4"></a> {# google #}
+        <a class="addthis_button_preferred_10"></a> {# email #}
+        <a class="addthis_button_preferred_3"></a> {# print #}
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_button_google_plusone"></a> {# google +1 #}
+    </div>  
+    <!-- AddThis Button END -->
+
+
+
 Settings
 ========
 You can change the following setup in your settings.py if you wish:
