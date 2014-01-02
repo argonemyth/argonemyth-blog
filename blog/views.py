@@ -89,7 +89,6 @@ class BlogPostListView(BlogPostContextMixin, ListView):
 
     def get_queryset(self):
         category = self.kwargs.get('category', None)
-        print category
         if category:
             return self.model.objects.published().filter(
                     category__slug__iexact = category)
