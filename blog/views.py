@@ -76,7 +76,7 @@ class BlogPostContextMixin(object):
         context['categories'] = BlogCategory.objects.all()
         cat = self.kwargs.get('category', None)
         if cat:
-            context['category'] = cat 
+            context['category'] = BlogCategory.objects.get(title__iexact=cat) 
         else:
             context['category'] = 'home' 
         return context

@@ -126,6 +126,9 @@ class BlogCategory(models.Model):
     slug = models.CharField(max_length=100, editable=False)
     position = models.PositiveSmallIntegerField(_('Position In the menu'),
                                                 null = True, blank=True)
+    background = ThumbnailerImageField(upload_to='categories', blank=True, null=True,
+                                       help_text="If you want to change the\
+                                                  site background.")
     #objects = models.Manager()
     #sites = models.ManyToManyField(Site)
     #on_site = CurrentSiteManager()
