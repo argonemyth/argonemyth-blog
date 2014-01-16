@@ -1,0 +1,4 @@
+include README.md
+include MANIFEST.in
+recursive-include blog/static *
+recursive-include blog/templates *
