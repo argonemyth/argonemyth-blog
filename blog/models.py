@@ -163,12 +163,19 @@ class Photo(models.Model):
     A photo that might attach to a blog post.
     Which will be in slide show.
     """
+    ORIENTATIONS = (
+        ('landscape', _('Landscape')),
+        ('portrait', _('Portrait')),
+    )
     post = models.ForeignKey("BlogPost", related_name="photos")
     image = ThumbnailerImageField(upload_to='photos', blank=True, null=True)
     title = models.CharField(_('title'), max_length=100, unique=True)
     slug = models.CharField(max_length=100, editable=False)
     caption = models.CharField(_('caption'), max_length=300, blank=True, null=True)
     position = models.PositiveSmallIntegerField(_('Position In Gallery'))
+    orientation = models.CharField(_('orientation'), max_length=20,
+                                   default='landscape', choices=ORIENTATIONS,
+                                   help_text=_("The width of landscape mode image will be 100%"))
     #location = models.ForeignKey(Location, related_name="photos", blank=True, null=True)
     is_public = models.BooleanField(_('is public'), default=True)
     is_published = models.BooleanField(_('is published'), default=True)
