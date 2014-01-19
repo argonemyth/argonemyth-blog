@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from blog.models import BlogPost, BlogCategory
 
+
 class TagListSerializer(serializers.WritableField):
     """
     Serialize Django Taggit objects
@@ -29,7 +30,7 @@ class BlogCategorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = BlogCategory
-        fields = ('id', 'title', 'slug', 'blogposts')
+        fields = ('id', 'title', 'slug', 'position', 'background', 'blogposts')
         read_only_fields = ('id', 'slug')
 
     def get_api_url(self, obj):
