@@ -23,6 +23,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_editable = ('category', 'published', 'date_published')
     list_filter = ("category", "published")
     search_fields = ("title", "content")
+    readonly_fields = ('date_created', 'date_updated')
     date_hierarchy = "date_published"
     ordering = ("-date_published", )
     form = BlogPostForm

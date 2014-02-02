@@ -124,8 +124,8 @@ class BlogAPI(object):
         return data
 
     def posts(self):
-        """
-        Get all the blog post on the remote server.
+        """Get all the blog post on the remote server.
+
         Returns: 
             A Python list of all the posts:
             [{u'category': u'http://argonemyth.me/blog/api/categories/journey/',
@@ -145,6 +145,51 @@ class BlogAPI(object):
         result = simplejson.loads(self._FetchUrl(url))
         return result
 
+    def get_post_by_url(self, url):
+        """
+        Get blog post by giving the full api url.
+
+        Returns:
+            A dictionary with the detail of the post:
+            {u'id': 1,
+             u'category': u'http://argonemyth.me/blog/api/categories/dev/',
+             u'author': u'vivicrow',
+             u'title': u'argonemyth.com Afterthoughts',
+             u'slug': u'argonemyth-com-afterthoughts',
+             u'description': u'About the development process of argonemyth.com.',
+             u'content': u'...',
+             u'published': True,
+             u'date_published': u'2011-07-04T13:06:19Z',
+             u'date_expired': None,
+             u'tags': [u'freelance', u'website development', u'argonemyth'],
+             u"date_created": "2013-09-08T12:18:20.742Z", 
+             u"date_updated": "2014-01-18T14:59:41.037Z", 
+             u'api_url': u'#/post/argonemyth-com-afterthoughts'}
+        """
+        result = simplejson.loads(self._FetchUrl(url))
+        # print result
+        return result
+
+    def categories(self):
+        """ Get all the blog categories on the remote server.
+
+        Returns: 
+            A Python list of all the categories:
+            [{u'id': 1,
+              u'title': u'Dev',
+              u'slug': u'dev'
+              u'position': 1,
+              u'background': u'',
+              u'blogposts': [
+                  u'http://argonemyth.me/blog/api/posts/a-comprehensive-list-of-insanely-useful-django-apps/',
+                  u'http://argonemyth.me/blog/api/posts/daily-linux-command-line-arsenals/',
+                  u'http://argonemyth.me/blog/api/posts/argonemyth-com-afterthoughts/'],
+              }, ...]
+        """
+        url = API_BASE + 'categories/'
+        result = simplejson.loads(self._FetchUrl(url))
+        return result
+
     def get_category_by_url(self, url):
         """
         Get category by giving the full api url.
@@ -156,4 +201,7 @@ class BlogAPI(object):
 
 if __name__ == '__main__':
     blog_api = BlogAPI()
-    posts = blog_api.posts()
+    # posts = blog_api.posts()
+    # cats = blog_api.categories()
+    # print cats
+    post = blog_api.get_post_by_url('http://argonemyth.me/blog/api/posts/argonemyth-com-afterthoughts/')

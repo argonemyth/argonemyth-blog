@@ -37,15 +37,18 @@ class BlogCategorySerializer(serializers.HyperlinkedModelSerializer):
         return "#/category/%s" % obj.slug
 
 
-class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
-    author = serializers.Field(source='author.username')
+class BlogPostSerializer(serializers.ModelSerializer):
+    # author = serializers.Field(source='author.username')
+    category_id = serializers.Field(source='category.pk')
+    author_id = serializers.Field(source='author.pk')
     tags = TagListSerializer(required=False)
     api_url = serializers.SerializerMethodField('get_api_url')
 
     class Meta:
         model = BlogPost
-        fields = ('id', 'category', 'author', 'title', 'slug', 'description', 'content',
-                  'published', 'date_published', 'date_expired', 'tags', 'api_url')
+        fields = ('id', 'category_id', 'author_id', 'title', 'slug', 'description', 'content',
+                  'published', 'date_published', 'date_expired', 'tags', 'date_created',
+                  'date_updated','api_url')
         read_only_fields = ('id', 'slug')
 
     def get_api_url(self, obj):
