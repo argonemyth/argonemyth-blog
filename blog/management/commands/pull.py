@@ -2,12 +2,13 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
 import urllib, urllib2
+import re
 from optparse import make_option
 from django.utils.dateparse import parse_datetime
 
 from blog.models import BlogPost, BlogCategory
 from blog.blog_api import BlogAPI
-
+from blog.utils import download_photo
 
 class Command(BaseCommand):
 
@@ -64,10 +65,11 @@ class Command(BaseCommand):
             # Adding all the posts from the category.
             for p_url in posts:
                 p_json = api.get_post_by_url(p_url)
-                p_json['category'] = category
-                p_json['author'] = User.objects.get(username=p_json['author'])
+                # p_json['category_id'] = category
+                # p_json['author'] = User.objects.get(username=p_json['author'])
                 tags = p_json.pop('tags')
                 api_url = p_json.pop('api_url')
+                # scan post content and grab all the embeded images
 
                 try:
                     post = BlogPost.objects.get(id=p_json["id"]) 
@@ -78,7 +80,8 @@ class Command(BaseCommand):
                     # Adding tags
                     if tags:
                         print "Adding the following tags to post %s: %s" % (post.title, (', ').join(tags))
-                        post.tags.add((',').join(tags))
+                        for tag in tags:
+                            post.tags.add(tag)
                 else:
                     if p_json['slug'] != post.slug:
                         raise Exception('The post is not synced')
@@ -91,6 +94,12 @@ class Command(BaseCommand):
                             post.save()
                         else:
                             print "No need to pull changes from the server" 
+
+                # Download all the images - regardless if they already exist or not
+                images = re.findall(r'<img.* src="(?P<img>.*?)"', p_json['content'])
+                if images:
+                    for img_src in images:
+                        download_photo(img_src)
 
 
 

@@ -92,6 +92,8 @@ If you wish to customize the content of add this, you will need to create a addt
     </div>  
     <!-- AddThis Button END -->
 
+9. Geolocation
+
 
 
 Settings
