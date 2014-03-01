@@ -3,38 +3,61 @@ argonemyth-blog
 
 A blog engine using Django REST Framework.
 
-Getting Started
-===============
+Dependencies
+============
+
+Right now, the app is rather diffcult to setup, I will simplify the setup process once I think the app is ready for production use, which might take a while due my current availability.
 
 ## South
 
-Add "South" to your project’s `INSTALLED_APPS` setting.
+Add *South* to your project’s `INSTALLED_APPS` setting.
 
 Run `./manage.py syncdb`
 
+## The following django apps will be installed along with *argonemyth-blog*
 
-## Taggit
+* Taggit
+* Django REST Framework
+* Django CKEditor
+* [easy-thumbnails](https://github.com/SmileyChris/easy-thumbnails)
 
-Add "taggit" to your project’s INSTALLED_APPS setting.
+Install & Setup
+===============
 
-Run ./manage.py syncdb or ./manage.py migrate taggit if using South.
+## Install *argonemyth-blog* va pip
 
-3. Install argonemyth-blog va pip
+## Make sure you have the folowing apps to your project's `INSTALLED_APPS` seting:
 
-Add "blog" to your project's INSTALLED_APPS seting.
+    INSTALLED_APPS = ( 
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.sites',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'django.contrib.admin',
+        'south',
+        'taggit',
+        'rest_framework',
+        'ckeditor',
+        'easy_thumbnails',
+        'disqus',
+        'blog'
+    )
 
-Run ./manage.py syncdb or ./manage.py migrate blog if using South.
+Run `./manage.py syncdb` or `./manage.py migrate` if using South.
 
-4. Add 'rest_framework' to your INSTALLED_APPS setting.
+## Django REST Framework Setup
 
-5. If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
+### URL
+ If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
 
     urlpatterns = patterns('',
         ...
         url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     )
 
-6. Add the following to settings.py:
+### Add the following to the `settings.py`:
 
     # REST Framework configurations
     REST_FRAMEWORK = { 
@@ -50,10 +73,9 @@ Run ./manage.py syncdb or ./manage.py migrate blog if using South.
         ]   
     }
 
-7. Django CKEditor
-Add ckeditor to your INSTALLED_APPS setting.
+## Django CKEditor Setup
 
-Add a CKEDITOR_UPLOAD_PATH setting to the project's settings.py file. This setting specifies an absolute filesystem path to your CKEditor media upload directory. Make sure you have write permissions for the path, i.e.:
+Add a `CKEDITOR_UPLOAD_PATH` setting to the project's `settings.py`. This setting specifies an absolute filesystem path to your CKEditor media upload directory. Make sure you have write permissions for the path, i.e.:
 
     CKEDITOR_UPLOAD_PATH = "/home/media/media.lawrence.com/uploads"
 
@@ -61,9 +83,8 @@ Add CKEditor URL include to your project's urls.py file:
 
     (r'^ckeditor/', include('ckeditor.urls')),
 
-8 Require easy-thumbnails
+## easy-thumbnails Setup
 
-https://github.com/SmileyChris/easy-thumbnails
 
     THUMBNAIL_ALIASES = { 
         "blog.Photo.image": {
@@ -72,8 +93,18 @@ https://github.com/SmileyChris/easy-thumbnails
         }   
     }
 
+## Settings for the app
 
-8. Addthis
+You can change the following setup in your settings.py if you wish:
+
+* Recent Post Count - by default, it's 10
+
+    BLOGS_RECENT_POSTS_COUNT = 10 
+
+Optional
+========
+
+## Addthis
 
 If you wish to customize the content of add this, you will need to create a addthis.html in your base template directory. Below is the default options:
 
@@ -93,14 +124,6 @@ If you wish to customize the content of add this, you will need to create a addt
     </div>  
     <!-- AddThis Button END -->
 
-9. Geolocation
 
-
-
-Settings
-========
-You can change the following setup in your settings.py if you wish:
-
-* Recent Post Count - by default, it's 10
-
-    BLOGS_RECENT_POSTS_COUNT = 10 
+Geolocation
+============
