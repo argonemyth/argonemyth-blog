@@ -3,30 +3,28 @@ argonemyth-blog
 
 A blog engine using Django REST Framework.
 
-Dependencies
-============
+## Dependencies
 
 Right now, the app is rather diffcult to setup, I will simplify the setup process once I think the app is ready for production use, which might take a while due my current availability.
 
-## South
+### South
 
 Add *South* to your project’s `INSTALLED_APPS` setting.
 
 Run `./manage.py syncdb`
 
-## The following django apps will be installed along with *argonemyth-blog*
+### The following django apps will be installed along with *argonemyth-blog*
 
 * Taggit
 * Django REST Framework
 * Django CKEditor
 * [easy-thumbnails](https://github.com/SmileyChris/easy-thumbnails)
 
-Install & Setup
-===============
+## Install & Setup
 
-## Install *argonemyth-blog* va pip
+##### Install *argonemyth-blog* va pip
 
-## Make sure you have the folowing apps to your project's `INSTALLED_APPS` seting:
+##### Make sure you have the folowing apps to your project's `INSTALLED_APPS` seting:
 
     INSTALLED_APPS = ( 
         'django.contrib.auth',
@@ -47,9 +45,9 @@ Install & Setup
 
 Run `./manage.py syncdb` or `./manage.py migrate` if using South.
 
-## Django REST Framework Setup
+##### Django REST Framework Setup
 
-### URL
+###### URL
  If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
 
     urlpatterns = patterns('',
@@ -57,7 +55,7 @@ Run `./manage.py syncdb` or `./manage.py migrate` if using South.
         url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     )
 
-### Add the following to the `settings.py`:
+###### Add the following to the `settings.py`:
 
     # REST Framework configurations
     REST_FRAMEWORK = { 
@@ -73,7 +71,7 @@ Run `./manage.py syncdb` or `./manage.py migrate` if using South.
         ]   
     }
 
-## Django CKEditor Setup
+##### Django CKEditor Setup
 
 Add a `CKEDITOR_UPLOAD_PATH` setting to the project's `settings.py`. This setting specifies an absolute filesystem path to your CKEditor media upload directory. Make sure you have write permissions for the path, i.e.:
 
@@ -83,7 +81,7 @@ Add CKEditor URL include to your project's urls.py file:
 
     (r'^ckeditor/', include('ckeditor.urls')),
 
-## easy-thumbnails Setup
+##### easy-thumbnails Setup
 
 
     THUMBNAIL_ALIASES = { 
@@ -93,7 +91,7 @@ Add CKEditor URL include to your project's urls.py file:
         }   
     }
 
-## Settings for the app
+##### Settings for the app
 
 You can change the following setup in your settings.py if you wish:
 
@@ -101,10 +99,9 @@ You can change the following setup in your settings.py if you wish:
 
     BLOGS_RECENT_POSTS_COUNT = 10 
 
-Optional
-========
+## Optional
 
-## Addthis
+##### Addthis
 
 If you wish to customize the content of add this, you will need to create a addthis.html in your base template directory. Below is the default options:
 
@@ -125,5 +122,4 @@ If you wish to customize the content of add this, you will need to create a addt
     <!-- AddThis Button END -->
 
 
-Geolocation
-============
+## Geolocation
