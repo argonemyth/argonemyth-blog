@@ -6,13 +6,14 @@ A blog engine using Django REST Framework.
 Getting Started
 ===============
 
-1. South
-Add "South" to your project’s INSTALLED_APPS setting.
+## South
 
-Run ./manage.py syncdb
+Add "South" to your project’s `INSTALLED_APPS` setting.
+
+Run `./manage.py syncdb`
 
 
-2. Taggit
+## Taggit
 
 Add "taggit" to your project’s INSTALLED_APPS setting.
 
