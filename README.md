@@ -13,12 +13,26 @@ Add *South* to your project’s `INSTALLED_APPS` setting.
 
 Run `./manage.py syncdb`
 
+### MaxMind GeoIP C API
+
+You need to install GeoIP from MaxMind
+
+#### In OpenSuse
+
+    $ sudo zypper install GeoIP
+
+#### In CentoOS
+
+    $ yum install python-GeoIP
+
 ### The following django apps will be installed along with *argonemyth-blog*
 
 * Taggit
 * Django REST Framework
 * Django CKEditor
 * [easy-thumbnails](https://github.com/SmileyChris/easy-thumbnails)
+* uuslug
+* [django-ipware](https://github.com/un33k/django-ipware)
 
 ## Install & Setup
 
@@ -90,6 +104,18 @@ Add CKEditor URL include to your project's urls.py file:
             'thumbnail': {'size': (40, 40), 'crop': 'smart'}
         }   
     }
+
+##### Settings for GeoIP
+
+    # Needs the download the following two files
+    # GeoLiteCity.dat.gz from http://geolite.maxmind.com/download/geoip/database/
+    # GeoIP.dat.gz from http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/
+    GEOIP_PATH = PROJECT_DIR + '/geoip/'
+
+Don't forget to download `GeoLiteCity.dat.gz` and `GeoIP.dat.gz` from the links above and *unzip* them in a directory corresponding to what you set `GEOIP_PATH` with in your settings:
+
+    $ gunzip GeoIP.dat.gz
+    $ gunzip GeoLiteCity.dat.gz
 
 ##### Settings for the app
 

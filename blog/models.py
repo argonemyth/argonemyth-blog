@@ -8,14 +8,55 @@ from django.contrib.comments.moderation import CommentModerator, moderator
 from django.template.defaultfilters import slugify, truncatewords_html
 from django.utils.timezone import now
 from django.core.urlresolvers import reverse
+from django.contrib.gis.geoip import GeoIP
+from django.db.backends import util
 
 #from datetime import datetime
 import re
 from uuslug import uuslug
 from easy_thumbnails.fields import ThumbnailerImageField
-
 from blog.managers import BlogPostManager, PhotoManager
 from taggit.managers import TaggableManager
+
+
+class Location(models.Model):
+    """A model tracks the location of a post."""
+    latitude = models.DecimalField(max_digits=9, decimal_places=6,
+                                   blank=True, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6,
+                                    blank=True, null=True)
+    city = models.CharField(_("city"), max_length=100,
+                            blank=True, null=True)
+    region = models.CharField(_("region"), max_length=100,
+                              blank=True, null=True)
+    country = models.CharField(_("country"), max_length=100)
+    country_code = models.CharField(_("country code"), max_length=2)
+
+    class Meta:
+        verbose_name = _('Location')
+        verbose_name_plural = _('Locations')
+        unique_together = ("latitude", "longitude")
+    
+    def __unicode__(self):
+        return u"%s (%s, %s)" % (self.country_code,
+                                 self.latitude,
+                                 self.longitude)
+    
+    """
+    def save(self, *args, **kwargs):
+        if self.latitude is None or self.longitude is None:
+            from geopy import geocoders
+            g = geocoders.Google()
+            try:
+                if self.type == 1:
+                    place, (self.latitude, self.longitude) = g.geocode(self.name)
+                else:
+                    place, (self.latitude, self.longitude) = g.geocode("%s in %s" % (self.name, self.country) )
+            except:
+                pass
+
+        super(Location, self).save(*args, **kwargs)
+    """
 
 
 class BlogPost(models.Model):
@@ -28,6 +69,9 @@ class BlogPost(models.Model):
                                  blank=True, null=True)
     author = models.ForeignKey("auth.User", verbose_name=_("Author"),
                                related_name="blogposts")
+    location = models.ForeignKey("Location", verbose_name=_("Location"),
+                                 related_name="blogposts",
+                                 null=True, blank=True)
     title = models.CharField(max_length=255) 
     slug = models.CharField(max_length=255, unique=True, editable=False)
     description = models.CharField(_('description'), max_length=300,
@@ -65,9 +109,33 @@ class BlogPost(models.Model):
     def __unicode__(self):
         return self.title  
 
-    def save(self, *args, **kwargs):
+    def save(self, ip=None, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self)
+        if ip:
+            self.location = self.get_location(ip)
         super(BlogPost, self).save(*args, **kwargs)
+
+    def get_location(self, ip):
+        """Get location from ip""" 
+        g = GeoIP()
+        geo_data = g.city(ip)
+        print geo_data
+        if geo_data: # we sometime get bogus ip
+            lat = util.format_number(geo_data['latitude'], 9, 6)
+            lon = util.format_number(geo_data['longitude'], 9, 6)
+            location_data = {
+                "city": geo_data['city'],
+                "region": geo_data['region'],
+                "country": geo_data['country_name'],
+                "country_code": geo_data['country_code']
+            }
+            location, _ = Location.objects.get_or_create(
+                              latitude = lat,
+                              longitude = lon,
+                              defaults=location_data)
+            return location
+
+        return None
 
     def is_editable(self, request):
         """
@@ -111,6 +179,7 @@ class BlogPost(models.Model):
         """
         tags = [tag.name for tag in self.tags.all()]
         return ','.join(tags)
+
 
 class BlogPostModerator(CommentModerator):
     email_notification = True

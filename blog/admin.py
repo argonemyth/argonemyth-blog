@@ -2,7 +2,8 @@ from django.contrib import admin
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 
-from blog.models import BlogPost, BlogCategory, Photo
+from blog.models import BlogPost, BlogCategory, Photo, Location
+from ipware.ip import get_ip
 
 class PhotoInline(admin.TabularInline):
     model = Photo 
@@ -29,6 +30,15 @@ class BlogPostAdmin(admin.ModelAdmin):
     form = BlogPostForm
     inlines = [PhotoInline]
 
+    def save_model(self, request, obj, form, change):
+        ip = get_ip(request)
+        if ip == '127.0.0.1':
+            ip = '41.136.98.140'
+        if ip:
+            obj.save(ip)
+        else:
+            obj.save()
+
 admin.site.register(BlogPost, BlogPostAdmin)
 
 
@@ -52,6 +62,8 @@ class PhotoAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 admin.site.register(Photo, PhotoAdmin)
+
+admin.site.register(Location)
 
 
 '''
