@@ -24,5 +24,9 @@ def download_photo(image_src):
                                  thumb_src.replace('/media/', ''))
     # print "Image output path: %s" % outpath
     # print "Image thumb output path: %s" % outpath_thumb
+    output_dir = os.path.dirname(outpath)
+    if not os.path.exists(output_dir):
+        # print "Creating dir: ", output_dir
+        os.makedirs(output_dir)
     urllib.urlretrieve(image_url, outpath)
     urllib.urlretrieve(thumb_url, outpath_thumb)
