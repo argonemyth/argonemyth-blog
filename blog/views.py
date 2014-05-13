@@ -76,7 +76,7 @@ class BlogPostContextMixin(object):
         context['categories'] = BlogCategory.objects.all()
         cat = self.kwargs.get('category', None)
         if cat:
-            context['category'] = BlogCategory.objects.get(slug__exact=cat) 
+            context['category'] = get_object_or_404(BlogCategory, slug__exact=cat) 
         else:
             context['category'] = 'home' 
         return context
