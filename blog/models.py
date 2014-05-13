@@ -76,6 +76,11 @@ class BlogPost(models.Model):
     slug = models.CharField(max_length=255, unique=True, editable=False)
     description = models.CharField(_('description'), max_length=300,
                                    blank=True, null=True)
+    main_image = ThumbnailerImageField(upload_to='photos',
+                                       blank=True, null=True,
+                                       help_text=_('Will show a thumbnail for \
+                                                    summary in blog list and \
+                                                    full one in post detail'))
     content = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
     date_published = models.DateTimeField(_('date published'),
@@ -229,7 +234,7 @@ comment_was_posted.connect(add_comment_count)
 
 class Photo(models.Model):
     """
-    A photo that might attach to a blog post.
+    A photo that might attach to a blog post gallery.
     Which will be in slide show.
     """
     ORIENTATIONS = (
