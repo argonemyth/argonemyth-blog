@@ -198,6 +198,8 @@ class BlogCategory(models.Model):
     """
     title = models.CharField(max_length=100) 
     slug = models.CharField(max_length=100, editable=False)
+    description = models.CharField(_('description'), max_length=300,
+                                   blank=True, null=True)
     position = models.PositiveSmallIntegerField(_('Position In the menu'),
                                                 null = True, blank=True)
     background = ThumbnailerImageField(upload_to='categories', blank=True, null=True,

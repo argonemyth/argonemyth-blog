@@ -4,7 +4,7 @@ from django.conf import settings
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import viewsets, routers
 
-from blog.feeds import BlogPostFeed
+from blog.feeds import BlogPostFeed, BlogPostFeedByCategory
 from blog import views
 
 """
@@ -20,6 +20,7 @@ sqs = SearchQuerySet().filter(site_id=settings.SITE_ID)
 
 # Blog Feeds
 urlpatterns = patterns('',
+    ("^feed/(?P<cat_slug>[\w\-]+)/$", BlogPostFeedByCategory()),
     ("^feed/$", BlogPostFeed()),
     #(r'^search/', include('haystack.urls')),
     #url(r'^search/', search_view_factory(searchqueryset=sqs), name="haystack_search"),
