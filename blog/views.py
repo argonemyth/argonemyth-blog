@@ -73,7 +73,12 @@ class BlogPostContextMixin(object):
         context = super(BlogPostContextMixin, self).get_context_data(**kwargs)
         context['recent_posts'] = self.model.objects.get_recent()
         #context['top_posts'] = self.model.objects.get_top_posts()
-        context['categories'] = BlogCategory.objects.all()
+        # We want the categories that have published blog post
+        categories = []
+        for cat in BlogCategory.objects.all():
+            if cat.blogposts.filter(published=True):
+                categories.append(cat)
+        context['categories'] = categories
         cat = self.kwargs.get('category', None)
         if cat:
             context['category'] = get_object_or_404(BlogCategory, slug__exact=cat) 
