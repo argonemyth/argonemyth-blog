@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import url, patterns, include
+from django.conf.urls import url, patterns, include
 from django.conf import settings
 
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -49,7 +49,8 @@ urlpatterns += patterns("blog.views",
     url(r'^app/partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
     url(r'^app/$', 'home', name="blog_home"),
     # Noral View
-    url(r'^(?P<category>[\w\-]+)/(?P<slug>[\w\-]+)/$', views.BlogPostDetailView.as_view(), name='post-detail'),
+    url(r'^blog/(?P<category>[\w\-]+)/(?P<slug>[\w\-]+)/$', views.BlogPostDetailView.as_view(), name='post-detail-old'),
+    url(r'^posts/(?P<slug>[\w\-]+)/$', views.BlogPostDetailView.as_view(), name='post-detail'),
     url(r'^(?P<category>[\w\-]*)$', views.BlogPostListView.as_view(), name='post-list'),
     #url(r'^$', views.BlogPostListView.as_view() , name="post-list"),
 )

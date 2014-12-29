@@ -79,9 +79,18 @@ class BlogPostContextMixin(object):
             if cat.blogposts.filter(published=True):
                 categories.append(cat)
         context['categories'] = categories
-        cat = self.kwargs.get('category', None)
+        try:
+            cat = self.object.category
+            get_cat = False
+        except AttributeError:
+            cat = self.kwargs.get('category', None)
+            get_cat = True
+
         if cat:
-            context['category'] = get_object_or_404(BlogCategory, slug__exact=cat) 
+            if get_cat:
+                context['category'] = get_object_or_404(BlogCategory, slug__exact=cat)
+            else:
+                context['category'] = cat
         else:
             context['category'] = 'home' 
         return context

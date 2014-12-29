@@ -175,7 +175,8 @@ class BlogPost(models.Model):
     def get_absolute_url(self):
         #return ("blog_post_preview", (), {"slug": self.slug})
         #return ("post-detail", (), {"slug": self.slug})
-        return reverse('post-detail', args=[self.category.slug, self.slug])
+        # return reverse('post-detail', args=[self.category.slug, self.slug])
+        return reverse('post-detail', args=[self.slug])
 
     def render_tags(self):
         """
