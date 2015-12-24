@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
 # Blog API Python Bindings
-# API docs at 
+# API docs at
 # Authors:
 # Fei Tan <fei@argonemyth.com>
 
+import requests
 import urllib, urllib2
+from django.conf import settings
 
 try:
   # Python >= 2.6
@@ -22,13 +24,13 @@ except ImportError:
       raise ImportError, "Unable to load a json library"
 
 # Configuration variables
-API_KEY = None
+API_KEY = settings.API_TOKEN
 API_BASE = "http://argonemyth.me/blog/api/"
 API_VERSION = None
 
 class BlogAPI(object):
     def __init__(self):
-        self.token = None
+        self.client = requests.Session()
 
     def _BuildUrl(self, url, path_elements=None, extra_params=None):
         # Break url into constituent parts
@@ -56,7 +58,6 @@ class BlogAPI(object):
 
     def _FetchUrl(self,
                   url,
-                  headers=None,
                   parameters=None,
                   post_data=None,
                   cache=None):
@@ -76,6 +77,10 @@ class BlogAPI(object):
         Returns:
             A string containing the body of the response.
         '''
+        # Build the custom header for api auth
+        headers = {'Authorization': 'Token %s' % API_KEY,
+                   'Content-type': 'application/json'}
+
 
         # Build the extra parameters dict
         extra_params = {}
@@ -98,10 +103,13 @@ class BlogAPI(object):
 
         if http_method == "GET" and url_params:
             url += '?' + url_params
+        """
             req = urllib2.Request(url, headers)
         else:
             #req = urllib2.Request(url, url_params, headers)
             req = urllib2.Request(url)
+        """
+        req = urllib2.Request(url, headers)
 
         try:
             response = urllib2.urlopen(req)
@@ -123,10 +131,47 @@ class BlogAPI(object):
 
         return data
 
+    def _send_api_request(self, url, method="get", payload=None):
+        headers = {'Authorization': 'Token %s' % API_KEY}
+                   # 'Content-type': 'application/json'}
+
+        if payload is None:
+            payload = {}
+
+        payload = simplejson.dumps(payload)
+        resp = self.client.request(method, url, data=payload, headers=headers)
+
+        if method in ['post'] and resp.status_code != 201:
+            # logger.error("Sentry API returned: %s" % resp.content)
+            print "API returned: %s" % resp.content
+            return None
+
+        if method == ['get', 'put'] and resp.status_code != 200:
+            # logger.error("Sentry API returned: %s" % resp.content)
+            print "API returned: %s" % resp.content
+            return None
+
+        if method == 'delete' and resp.status_code != 204:
+            # logger.error("Sentry API returned %s for delete method" % resp.status_code)
+            print "API returned: %s" % resp.content
+            return False
+
+        try:
+            resp_content = simplejson.loads(resp.content)
+        except Exception as e:
+            if method != 'delete':
+                # logger.error("Can't load the json string returned by API: %s" % e)
+                print "Can't load the json string returned by API: %s" % e
+            else:
+                resp_content = True
+        # print resp_content
+        return resp_content
+
+
     def posts(self):
         """Get all the blog post on the remote server.
 
-        Returns: 
+        Returns:
             A Python list of all the posts:
             [{u'category': u'http://argonemyth.me/blog/api/categories/journey/',
               u'description': u"XXXXXX",
@@ -142,7 +187,7 @@ class BlogAPI(object):
               u'api_url': u'#/post/ile-sainte-marie-and-cetamada'},...]
         """
         url = API_BASE + 'posts/'
-        result = simplejson.loads(self._FetchUrl(url))
+        result = self._send_api_request(url)
         return result
 
     def get_post_by_url(self, url):
@@ -162,18 +207,19 @@ class BlogAPI(object):
              u'date_published': u'2011-07-04T13:06:19Z',
              u'date_expired': None,
              u'tags': [u'freelance', u'website development', u'argonemyth'],
-             u"date_created": "2013-09-08T12:18:20.742Z", 
-             u"date_updated": "2014-01-18T14:59:41.037Z", 
+             u"date_created": "2013-09-08T12:18:20.742Z",
+             u"date_updated": "2014-01-18T14:59:41.037Z",
              u'api_url': u'#/post/argonemyth-com-afterthoughts'}
         """
-        result = simplejson.loads(self._FetchUrl(url))
+        # result = simplejson.loads(self._FetchUrl(url))
+        result = self._send_api_request(url)
         # print result
         return result
 
     def categories(self):
         """ Get all the blog categories on the remote server.
 
-        Returns: 
+        Returns:
             A Python list of all the categories:
             [{u'id': 1,
               u'title': u'Dev',
@@ -187,15 +233,15 @@ class BlogAPI(object):
               }, ...]
         """
         url = API_BASE + 'categories/'
-        result = simplejson.loads(self._FetchUrl(url))
+        result = self._send_api_request(url)
         return result
 
     def get_category_by_url(self, url):
         """
         Get category by giving the full api url.
         """
-        result = simplejson.loads(self._FetchUrl(url))
-        print result
+        result = self._send_api_request(url)
+        # print result
         return result
 
 
