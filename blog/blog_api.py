@@ -139,7 +139,8 @@ class BlogAPI(object):
             payload = {}
 
         payload = simplejson.dumps(payload)
-        resp = self.client.request(method, url, data=payload, headers=headers)
+        resp = self.client.request(method, url, data=payload,
+                                   headers=headers, verify=False)
 
         if method in ['post'] and resp.status_code != 201:
             # logger.error("Sentry API returned: %s" % resp.content)
