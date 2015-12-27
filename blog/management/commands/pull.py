@@ -67,7 +67,7 @@ class Command(BaseCommand):
                     if current_data == c_json:
                         print "%s is already in sync" % c_json['title']
                     else:
-                        print "Updating a existing category:"
+                        # print "Updating a existing category:"
                         category.__dict__.update(c_json)
                         category.save()
 
@@ -104,8 +104,8 @@ class Command(BaseCommand):
                             print "Never version of post %s on the server, updating..." % (post.title)
                             post.__dict__.update(p_json)
                             post.save()
-                        else:
-                            print "No need to pull changes from the server"
+                        # else:
+                            # print "No need to update post %s " % post.title
 
                 # Download all the images in the content - regardless if they already exist or not
                 images = re.findall(r'<img.* src="(?P<img>.*?)"', p_json['content'])
@@ -113,25 +113,25 @@ class Command(BaseCommand):
                     for img_src in images:
                         download_photo(img_src)
 
-            # Adding & upate all the photos in Photo albums
-            photos = api.photos()
-            for photo_json in photos:
-                try:
-                    photo = Photo.objects.get(id=photo_json["id"])
-                except Photo.DoesNotExist:
-                    pass
+        # Adding & upate all the photos in Photo albums
+        photos = api.photos()
+        for photo_json in photos:
+            download = False
+            try:
+                photo = Photo.objects.get(id=photo_json["id"])
+            except Photo.DoesNotExist:
+                download = True
 
-                tags = photo_json.pop('tags')
-                photo = Photo(**photo_json)
-                photo.save()
-                if tags:
-                    print "Adding the following tags to the photo %s: %s" % (photo.title, (', ').join(tags))
-                    for tag in tags:
-                        photo.tags.add(tag)
+            tags = photo_json.pop('tags')
+            photo = Photo(**photo_json)
+            photo.save()
+            if tags:
+                print "Adding the following tags to the photo %s: %s" % (photo.title, (', ').join(tags))
+                for tag in tags:
+                    photo.tags.add(tag)
+            if download is True:
                 photo_url = '/media/' + photo_json['image']
                 download_photo(photo_url, False)
-
-
 
 
 
