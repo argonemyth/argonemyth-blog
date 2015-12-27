@@ -42,6 +42,7 @@ urlpatterns += patterns("blog.views",
     #url("^category/(?P<category>.*)/$", "blog_post_list", name="blog_post_list_category"),
     #url("^post_comment/(?P<blog_id>\d+)/$", 'blog_post_comment', name="blog_post_comment"),
     # With Rest Framework & Anuglar JS
+    url(r'^api/locations/$', views.LocationList.as_view(), name='location-list'),
     url(r'^api/categories/$', views.BlogCategoryList.as_view(), name='blogcategory-list'),
     url(r'^api/categories/(?P<slug>[\w\-]+)/$', views.BlogCategoryDetail.as_view(), name='blogcategory-detail'),
     url(r'^api/posts/$', views.BlogPostList.as_view(), name='blogpost-list'),

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from blog.models import BlogPost, BlogCategory
+from blog.models import Location, BlogPost, BlogCategory
 
 
 class TagListSerializer(serializers.WritableField):
@@ -23,6 +23,11 @@ class TagListSerializer(serializers.WritableField):
         if type(obj) is not list:
             return [tag.name for tag in obj.all()]
         return obj
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
 
 
 class BlogCategorySerializer(serializers.HyperlinkedModelSerializer):

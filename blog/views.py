@@ -7,8 +7,11 @@ from django.template import RequestContext
 from django.views.generic import ListView, DetailView
 from rest_framework import generics
 
-from blog.models import BlogPost, BlogCategory
-from blog.serializers import BlogPostSerializer, BlogCategorySerializer
+from blog.models import BlogPost, BlogCategory, Location
+from blog.serializers import (LocationSerializer,
+                              BlogPostSerializer,
+                              BlogCategorySerializer)
+
 
 class BlogPostList(generics.ListCreateAPIView):
     """
@@ -16,10 +19,10 @@ class BlogPostList(generics.ListCreateAPIView):
     """
     model = BlogPost
     serializer_class = BlogPostSerializer
-    
+
     def pre_save(self, obj):
         obj.author = self.request.user
-    
+
     def post_save(self, obj, *args, **kwargs):
         if type(obj.tags) is list:
             # if tags were provided in the request
@@ -30,7 +33,7 @@ class BlogPostList(generics.ListCreateAPIView):
 
 class BlogPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve, update and delete a blog post 
+    Retrieve, update and delete a blog post
     """
     model = BlogPost
     serializer_class = BlogPostSerializer
@@ -52,6 +55,14 @@ class BlogCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BlogCategorySerializer
 
 
+class LocationList(generics.ListCreateAPIView):
+    """
+    List all the locations
+    """
+    model = Location
+    serializer_class = LocationSerializer
+
+
 def home(request, template_name="blog/blog_index.html"):
     """
     The index for blog
@@ -61,7 +72,7 @@ def home(request, template_name="blog/blog_index.html"):
 
 def angular_views(request, page):
     """
-    Render angular partials 
+    Render angular partials
     """
     template_name = "blog/partials/%s" % page
     return render_to_response(template_name,
@@ -92,7 +103,7 @@ class BlogPostContextMixin(object):
             else:
                 context['category'] = cat
         else:
-            context['category'] = 'home' 
+            context['category'] = 'home'
         return context
 
 
@@ -117,7 +128,7 @@ class BlogPostDetailView(BlogPostContextMixin, DetailView):
 def archive_months(request, year):
     """
     Get the monthly status of posts for a year.
-    archives will be a list with tuples in this form: 
+    archives will be a list with tuples in this form:
         (month_in_digits, month_in_string_format, number_of_post)
     """
     archives = BlogPost.objects.get_months(year)
@@ -189,14 +200,14 @@ def blog_post_detail(request, slug=None, template="blog/blog_post_detail.html"):
         if blog_post.published:
             blog_post.add_view_count()
     else:
-        blog_post = blog_posts.latest() 
+        blog_post = blog_posts.latest()
 
     archive = BlogPost.objects.get_years()
-    
+
     # Get Categories
     cats = BlogCategory.objects.filter(blogposts__in=blog_posts).distinct()
     """
-    posted_comment_form = CommentForm(request.POST or None, 
+    posted_comment_form = CommentForm(request.POST or None,
                                       initial=comment_data)
     unposted_comment_form = CommentForm(initial=comment_data)
     if request.method == "POST" and posted_comment_form.is_valid():
@@ -225,7 +236,7 @@ def blog_post_detail(request, slug=None, template="blog/blog_post_detail.html"):
     t = select_template(["blog/%s.html" % slug, template], request_context)
     return HttpResponse(t.render(request_context))
     """
-    context = {"blog_post": blog_post, 
+    context = {"blog_post": blog_post,
                "recent_posts": recent_posts,
                "archive": archive,
                "top_posts": top_posts,

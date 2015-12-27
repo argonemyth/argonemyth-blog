@@ -245,6 +245,18 @@ class BlogAPI(object):
         # print result
         return result
 
+    def locations(self):
+        """ Get all the locations from the remote server.
+
+        Returns:
+            A Python list of all the locations:
+            [{"id": 1, "latitude": "-20.1619", "longitude": "57.498901",
+              "city": "Port Louis", "region": "18", "country": "Mauritius",
+              "country_code": "MU"},...]
+        """
+        url = API_BASE + 'locations/'
+        result = self._send_api_request(url)
+        return result
 
 if __name__ == '__main__':
     blog_api = BlogAPI()
