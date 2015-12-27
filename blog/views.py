@@ -7,8 +7,9 @@ from django.template import RequestContext
 from django.views.generic import ListView, DetailView
 from rest_framework import generics
 
-from blog.models import BlogPost, BlogCategory, Location
+from blog.models import BlogPost, BlogCategory, Location, Photo
 from blog.serializers import (LocationSerializer,
+                              PhotoSerializer,
                               BlogPostSerializer,
                               BlogCategorySerializer)
 
@@ -61,6 +62,11 @@ class LocationList(generics.ListCreateAPIView):
     """
     model = Location
     serializer_class = LocationSerializer
+
+
+class PhotoList(generics.ListCreateAPIView):
+    model = Photo
+    serializer_class = PhotoSerializer
 
 
 def home(request, template_name="blog/blog_index.html"):

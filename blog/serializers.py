@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from blog.models import Location, BlogPost, BlogCategory
+from blog.models import Location, BlogPost, BlogCategory, Photo
 
 
 class TagListSerializer(serializers.WritableField):
@@ -61,3 +61,16 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     def get_api_url(self, obj):
         return "#/post/%s" % obj.slug
+
+
+class PhotoSerializer(serializers.ModelSerializer):
+    post_id = serializers.Field(source='post.pk')
+    tags = TagListSerializer(required=False)
+
+    class Meta:
+        model = Photo
+        fields = ('id', 'post_id', 'image',
+                  'title', 'slug', 'caption', 'position', 'orientation',
+                  'is_public', 'is_published', 'date_added', 'date_modified',
+                  'tags')
+        read_only_fields = ('id', 'slug')

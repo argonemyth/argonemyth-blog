@@ -47,6 +47,7 @@ urlpatterns += patterns("blog.views",
     url(r'^api/categories/(?P<slug>[\w\-]+)/$', views.BlogCategoryDetail.as_view(), name='blogcategory-detail'),
     url(r'^api/posts/$', views.BlogPostList.as_view(), name='blogpost-list'),
     url(r'^api/posts/(?P<slug>[\-\d\w]*)/$', views.BlogPostDetail.as_view(), name="blogpost-detail"),
+    url(r'^api/photos/$', views.PhotoList.as_view(), name='photo-list'),
     url(r'^app/partials/(?P<page>[-\w]+.html)/$', 'angular_views'),
     url(r'^app/$', 'home', name="blog_home"),
     # Noral View

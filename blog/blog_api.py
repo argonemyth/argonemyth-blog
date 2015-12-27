@@ -258,6 +258,15 @@ class BlogAPI(object):
         result = self._send_api_request(url)
         return result
 
+    def photos(self):
+        """
+        Get all the photos from the remote server.
+        """
+        url = API_BASE + 'photos/'
+        result = self._send_api_request(url)
+        return result
+
+
 if __name__ == '__main__':
     blog_api = BlogAPI()
     # posts = blog_api.posts()
