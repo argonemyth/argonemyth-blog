@@ -6,7 +6,7 @@ import re
 from optparse import make_option
 from django.utils.dateparse import parse_datetime
 
-from blog.models import BlogPost, BlogCategory
+from blog.models import BlogPost, BlogCategory, Location, Photo
 from blog.blog_api import BlogAPI
 from blog.utils import download_photo
 
@@ -33,18 +33,27 @@ class Command(BaseCommand):
         if options['nuke']:
             # This will also delete all the posts that are associated
             # with the categories.
-            BlogCategory.objects.all().delete() 
+            BlogCategory.objects.all().delete()
             BlogPost.objects.all().delete()
+            Location.objects.all().delete()
+            Photo.objects.all().delete()
 
-        # Step 2: Add all the categories and posts back
+        # Step 2: Add all the locations, categories and posts back
+        # Updating all the locations
+        locations = api.locations()
+        for l_json in locations:
+            loc, created = Location.objects.get_or_create(id=l_json["id"])
+            loc = Location(**l_json)
+            loc.save()
+
         cats = api.categories()
         for c_json in cats:
             # print c_json
             posts = c_json.pop('blogposts')
             try:
-                category = BlogCategory.objects.get(id=c_json["id"]) 
+                category = BlogCategory.objects.get(id=c_json["id"])
             except BlogCategory.DoesNotExist:
-                print "Creating a new category: "
+                # print "Creating a new category: "
                 category = BlogCategory(**c_json)
                 category.save()
             else:
@@ -72,11 +81,14 @@ class Command(BaseCommand):
                 # scan post content and grab all the embeded images
 
                 try:
-                    post = BlogPost.objects.get(id=p_json["id"]) 
+                    post = BlogPost.objects.get(id=p_json["id"])
                 except BlogPost.DoesNotExist:
                     print "Creating a new post: %s" % p_json['title']
                     post = BlogPost(**p_json)
                     post.save()
+                    # Download main image
+                    if p_json['main_image']:
+                        download_photo('/media/' + p_json['main_image'], False)
                     # Adding tags
                     if tags:
                         print "Adding the following tags to post %s: %s" % (post.title, (', ').join(tags))
@@ -93,27 +105,47 @@ class Command(BaseCommand):
                             post.__dict__.update(p_json)
                             post.save()
                         else:
-                            print "No need to pull changes from the server" 
+                            print "No need to pull changes from the server"
 
-                # Download all the images - regardless if they already exist or not
+                # Download all the images in the content - regardless if they already exist or not
                 images = re.findall(r'<img.* src="(?P<img>.*?)"', p_json['content'])
                 if images:
                     for img_src in images:
                         download_photo(img_src)
+
+            # Adding & upate all the photos in Photo albums
+            photos = api.photos()
+            for photo_json in photos:
+                try:
+                    photo = Photo.objects.get(id=photo_json["id"])
+                except Photo.DoesNotExist:
+                    pass
+
+                tags = photo_json.pop('tags')
+                photo = Photo(**photo_json)
+                photo.save()
+                if tags:
+                    print "Adding the following tags to the photo %s: %s" % (photo.title, (', ').join(tags))
+                    for tag in tags:
+                        photo.tags.add(tag)
+                photo_url = '/media/' + photo_json['image']
+                download_photo(photo_url, False)
+
+
 
 
 
         # posts = api.posts()
         # for post in posts:
         #     print "Post ID: ", post["id"]
-        #     #author = User.objects.get(username=post["author"] 
+        #     #author = User.objects.get(username=post["author"]
         #     cat_url = post["category"]
         #     if cat_url:
         #         cat_json = api.get_category_by_url(cat_url)
         #         print "Category: ", cat_json["title"]
         #         cat_json.pop("blogposts", None)
         #         try:
-        #             category = BlogCategory.objects.get(id=cat_json["id"]) 
+        #             category = BlogCategory.objects.get(id=cat_json["id"])
         #         except BlogCategory.DoesNotExist:
         #             print "Creating a new category: "
         #             print cat_json

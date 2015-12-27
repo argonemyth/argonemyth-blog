@@ -2,7 +2,7 @@ from calendar import month_name
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.views.generic import ListView, DetailView
 from rest_framework import generics
@@ -86,6 +86,13 @@ def angular_views(request, page):
 
 
 class BlogPostContextMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        # check if there is some video onsite
+        if not request.user.is_authenticated():
+            return redirect('home')
+        else:
+            return super(BlogPostContextMixin, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(BlogPostContextMixin, self).get_context_data(**kwargs)
         context['recent_posts'] = self.model.objects.get_recent()
